@@ -1,32 +1,31 @@
 {
-  "_comment": "STUB stages. Replace with Shaykh-approved content before launch.",
   "stages": [
     {
       "number": 1,
       "name": "The Drifter",
       "meaning": "Going through the motions. Praying maybe. Providing maybe. Heart not fully in it.",
-      "guidance": "[STUB] The first step is waking up to where you actually are — not where you tell people you are.",
+      "guidance": "The first step is waking up to where you actually are — not where you tell people you are. You are not broken. But something has gone quiet inside, and you know it. The work begins with honesty.",
       "scoreRange": [0, 25]
     },
     {
       "number": 2,
       "name": "The Builder",
       "meaning": "Awake to the gap. Moving, but not yet consistent.",
-      "guidance": "[STUB] You know what needs to change. Now build the habits that make it stick.",
+      "guidance": "You can see the distance between who you are and who you want to be. That awareness is a gift. Now the work is building the habits and the community that make the change stick — before life gives you a reason to slip back.",
       "scoreRange": [26, 50]
     },
     {
       "number": 3,
       "name": "The Anchored",
       "meaning": "Consistent in the fundamentals. Has blind spots he has not faced yet.",
-      "guidance": "[STUB] Your foundation is solid. Now go deeper into the areas you have been avoiding.",
+      "guidance": "Your foundation is real. The people around you trust you. But there are one or two places where you have been holding back — an area you have been avoiding because going there feels like it might cost you something. It will not. Go there.",
       "scoreRange": [51, 75]
     },
     {
       "number": 4,
       "name": "The Shepherd",
       "meaning": "Living it. Other men look to him.",
-      "guidance": "[STUB] You are ready to lead other men. Your growth multiplies through the men you serve.",
+      "guidance": "You have done the work most men never do. Now your growth multiplies — not just for you, but for every man, family, and community you touch. The question at this stage is not what you need to fix. It is who you are going to bring with you.",
       "scoreRange": [76, 100]
     }
   ]
