@@ -1,0 +1,209 @@
+{
+  "_comment": "Masterman Assessment v2 — 20 approved questions. 4 modules × (4 Likert + 1 Scenario). Do NOT edit question IDs, axis, module, type, weight, or scoringDirection without updating lib/scoring.ts. Text edits only need JSON changes.",
+  "questions": [
+    {
+      "id": "Q1",
+      "module": "identity",
+      "axis": "A",
+      "type": "likert",
+      "text": "I know exactly why Allah put me on this earth, and I can say it in one sentence.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q2",
+      "module": "identity",
+      "axis": "A",
+      "type": "likert",
+      "text": "Most weeks, I feel like I am reacting to life instead of leading it.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q3",
+      "module": "identity",
+      "axis": "A",
+      "type": "likert",
+      "text": "When my faith is tested, I return to the Qur'an and Sunnah before I return to my own thinking.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q4",
+      "module": "identity",
+      "axis": "A",
+      "type": "likert",
+      "text": "I often feel I am playing a role I did not choose.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q5",
+      "module": "identity",
+      "axis": "A",
+      "type": "scenario",
+      "text": "Your boss asks you to do something that crosses an Islamic line. Nothing illegal — just wrong. What do you actually do?",
+      "weight": 2,
+      "options": [
+        { "label": "Push back respectfully and refuse, even if it costs me.", "score": 1, "pole": "A" },
+        { "label": "Do it this once and tell myself I'll fix it later.", "score": 2, "pole": "B" },
+        { "label": "Find a workaround so I don't have to choose.", "score": 1, "pole": "B" },
+        { "label": "Refuse and explain my reasoning openly.", "score": 2, "pole": "A" }
+      ]
+    },
+    {
+      "id": "Q6",
+      "module": "nafs",
+      "axis": "G",
+      "type": "likert",
+      "text": "When I feel anger rising, I can stop myself before I speak.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q7",
+      "module": "nafs",
+      "axis": "G",
+      "type": "likert",
+      "text": "I keep promises I make to myself, even small ones.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q8",
+      "module": "nafs",
+      "axis": "G",
+      "type": "likert",
+      "text": "My phone controls more of my day than I control of it.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q9",
+      "module": "nafs",
+      "axis": "G",
+      "type": "likert",
+      "text": "I do muhasaba (self-accounting) on most days.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q10",
+      "module": "nafs",
+      "axis": "G",
+      "type": "scenario",
+      "text": "It is 11pm. You are tired. You told yourself you would pray Isha and sleep. Your phone is in your hand. What actually happens most nights?",
+      "weight": 2,
+      "options": [
+        { "label": "I put the phone down, pray, and sleep.", "score": 2, "pole": "A" },
+        { "label": "I scroll for 10 minutes, then pray and sleep.", "score": 1, "pole": "A" },
+        { "label": "I scroll, lose track, and pray late and rushed.", "score": 1, "pole": "B" },
+        { "label": "I scroll until I fall asleep and miss Isha.", "score": 2, "pole": "B" }
+      ]
+    },
+    {
+      "id": "Q11",
+      "module": "marriage",
+      "axis": "S",
+      "type": "likert",
+      "text": "My wife knows I will lead the household even when it is hard.",
+      "textHypothetical": "When I marry, in shaa Allah, I will lead my household even when it is hard.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q12",
+      "module": "marriage",
+      "axis": "S",
+      "type": "likert",
+      "text": "I avoid hard conversations with my wife and hope they pass.",
+      "textHypothetical": "I tend to avoid hard conversations and hope they pass on their own.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q13",
+      "module": "marriage",
+      "axis": "S",
+      "type": "likert",
+      "text": "My children see me pray more often than they see me on my phone.",
+      "textHypothetical": "My children will see me pray more often than they see me on my phone.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q14",
+      "module": "marriage",
+      "axis": "S",
+      "type": "likert",
+      "text": "When something is wrong at home, I usually wait for my wife to bring it up.",
+      "textHypothetical": "When something feels off, I usually wait for others to bring it up first.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q15",
+      "module": "marriage",
+      "axis": "S",
+      "type": "scenario",
+      "text": "Your wife tells you she is unhappy with how things are at home. You do not fully agree. What do you do?",
+      "weight": 2,
+      "options": [
+        { "label": "Listen fully, ask questions, then lead a real conversation.", "score": 2, "pole": "A" },
+        { "label": "Listen, get defensive, and try to explain my side.", "score": 1, "pole": "B" },
+        { "label": "Agree to keep the peace and change nothing.", "score": 2, "pole": "B" },
+        { "label": "Listen, take a day to reflect, and come back with a plan.", "score": 1, "pole": "A" }
+      ]
+    },
+    {
+      "id": "Q16",
+      "module": "brotherhood",
+      "axis": "C",
+      "type": "likert",
+      "text": "I have at least two Muslim brothers I can call when I am struggling.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q17",
+      "module": "brotherhood",
+      "axis": "C",
+      "type": "likert",
+      "text": "Most weeks I go without real conversation with another Muslim man.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q18",
+      "module": "brotherhood",
+      "axis": "C",
+      "type": "likert",
+      "text": "There is at least one brother who would correct me if I was wrong, and I would listen.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q19",
+      "module": "brotherhood",
+      "axis": "C",
+      "type": "likert",
+      "text": "I tell myself I do not need other men — I just need Allah.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q20",
+      "module": "brotherhood",
+      "axis": "C",
+      "type": "scenario",
+      "text": "You are going through the hardest month of your life. Who actually knows about it?",
+      "weight": 2,
+      "options": [
+        { "label": "Two or three brothers I trust — and we have talked about it.", "score": 2, "pole": "A" },
+        { "label": "One brother knows part of it.", "score": 1, "pole": "A" },
+        { "label": "Only my wife knows.", "score": 1, "pole": "B" },
+        { "label": "Nobody. I am handling it alone.", "score": 2, "pole": "B" }
+      ]
+    }
+  ]
+}

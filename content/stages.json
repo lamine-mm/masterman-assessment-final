@@ -1,0 +1,33 @@
+{
+  "_comment": "STUB stages. Replace with Shaykh-approved content before launch.",
+  "stages": [
+    {
+      "number": 1,
+      "name": "The Drifter",
+      "meaning": "Going through the motions. Praying maybe. Providing maybe. Heart not fully in it.",
+      "guidance": "[STUB] The first step is waking up to where you actually are — not where you tell people you are.",
+      "scoreRange": [0, 25]
+    },
+    {
+      "number": 2,
+      "name": "The Builder",
+      "meaning": "Awake to the gap. Moving, but not yet consistent.",
+      "guidance": "[STUB] You know what needs to change. Now build the habits that make it stick.",
+      "scoreRange": [26, 50]
+    },
+    {
+      "number": 3,
+      "name": "The Anchored",
+      "meaning": "Consistent in the fundamentals. Has blind spots he has not faced yet.",
+      "guidance": "[STUB] Your foundation is solid. Now go deeper into the areas you have been avoiding.",
+      "scoreRange": [51, 75]
+    },
+    {
+      "number": 4,
+      "name": "The Shepherd",
+      "meaning": "Living it. Other men look to him.",
+      "guidance": "[STUB] You are ready to lead other men. Your growth multiplies through the men you serve.",
+      "scoreRange": [76, 100]
+    }
+  ]
+}

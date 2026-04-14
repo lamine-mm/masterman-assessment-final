@@ -1,0 +1,165 @@
+{
+  "_comment": "STUB type write-ups. All 16 codes required before launch. Replace with Shaykh-approved content.",
+  "types": {
+    "AGSC": {
+      "code": "AGSC",
+      "name": "The Anchored Shepherd",
+      "identity": "[STUB] Your house runs toward you, not away from you.",
+      "strength": "[STUB] You lead from conviction, not approval.",
+      "blindSpot": "[STUB] You can mistake silence for agreement from those you love.",
+      "quranAnchor": "[STUB] And We made them leaders, guiding by Our command.",
+      "anchorSource": "Qur'an 21:73",
+      "nextStep": "[STUB] Ask your wife one hard question this week — and sit with the answer."
+    },
+    "AGSP": {
+      "code": "AGSP",
+      "name": "The Governed Anchor",
+      "identity": "[STUB] You hold yourself together — now learn to hold your people together.",
+      "strength": "[STUB] Your self-discipline is real and rare.",
+      "blindSpot": "[STUB] You lead yourself well but have not yet fully led your home.",
+      "quranAnchor": "[STUB] Indeed, Allah loves those who act justly.",
+      "anchorSource": "Qur'an 60:8",
+      "nextStep": "[STUB] Identify one area at home where your family needs your leadership — and step in."
+    },
+    "AGPC": {
+      "code": "AGPC",
+      "name": "The Governed Brother",
+      "identity": "[STUB] You show up for your brothers. Now show up the same way for your home.",
+      "strength": "[STUB] You invest in the men around you.",
+      "blindSpot": "[STUB] You are more present in the brotherhood than in your own household.",
+      "quranAnchor": "[STUB] The believers are but brothers.",
+      "anchorSource": "Qur'an 49:10",
+      "nextStep": "[STUB] Bring the same intentionality you give your brothers to one conversation with your wife this week."
+    },
+    "AGPI": {
+      "code": "AGPI",
+      "name": "The Governed Man",
+      "identity": "[STUB] You govern yourself with discipline. The next step is opening up.",
+      "strength": "[STUB] You are consistent where others are chaotic.",
+      "blindSpot": "[STUB] Your self-sufficiency can become isolation.",
+      "quranAnchor": "[STUB] And hold firmly to the rope of Allah all together and do not become divided.",
+      "anchorSource": "Qur'an 3:103",
+      "nextStep": "[STUB] Reach out to one brother this week — not to be needed, just to connect."
+    },
+    "ARSC": {
+      "code": "ARSC",
+      "name": "The Present Shepherd",
+      "identity": "[STUB] You are there for your family and your brothers. Your nafs still tests you.",
+      "strength": "[STUB] Your presence is felt — people lean on you.",
+      "blindSpot": "[STUB] Your reactive nafs undermines the leadership you are capable of.",
+      "quranAnchor": "[STUB] And be patient, for indeed Allah does not allow to be lost the reward of those who do good.",
+      "anchorSource": "Qur'an 11:115",
+      "nextStep": "[STUB] Identify your biggest recurring nafs battle and name it out loud to yourself."
+    },
+    "ARSP": {
+      "code": "ARSP",
+      "name": "The Builder",
+      "identity": "[STUB] You are awake to the gap. Keep moving.",
+      "strength": "[STUB] You have not given up on becoming who you are supposed to be.",
+      "blindSpot": "[STUB] Inconsistency is your main obstacle right now.",
+      "quranAnchor": "[STUB] So verily, with the hardship comes ease.",
+      "anchorSource": "Qur'an 94:5",
+      "nextStep": "[STUB] Pick one habit and protect it for 30 days before adding anything else."
+    },
+    "ARPC": {
+      "code": "ARPC",
+      "name": "The Connected Builder",
+      "identity": "[STUB] You have your brothers. Now build the rest.",
+      "strength": "[STUB] Brotherhood is real for you — that is not small.",
+      "blindSpot": "[STUB] You invest in others before you have invested in yourself.",
+      "quranAnchor": "[STUB] O you who believe, protect yourselves and your families from a fire.",
+      "anchorSource": "Qur'an 66:6",
+      "nextStep": "[STUB] Before your next brotherhood commitment, ask: is my own house in order?"
+    },
+    "ARPI": {
+      "code": "ARPI",
+      "name": "The Seeker",
+      "identity": "[STUB] You are at the beginning. That is honest — and it is the right place to start.",
+      "strength": "[STUB] You are willing to look at yourself honestly.",
+      "blindSpot": "[STUB] Everything needs attention at once — pick the one thing that unlocks the others.",
+      "quranAnchor": "[STUB] Indeed, Allah will not change the condition of a people until they change what is in themselves.",
+      "anchorSource": "Qur'an 13:11",
+      "nextStep": "[STUB] Lock in your five daily prayers for 21 days before anything else."
+    },
+    "DGSC": {
+      "code": "DGSC",
+      "name": "The Steady Shepherd",
+      "identity": "[STUB] You show up consistently for your family and your brothers. Now anchor your identity.",
+      "strength": "[STUB] You are dependable — your people trust your presence.",
+      "blindSpot": "[STUB] You lead others without a clear internal compass.",
+      "quranAnchor": "[STUB] And upon Allah let the believers rely.",
+      "anchorSource": "Qur'an 9:51",
+      "nextStep": "[STUB] Write down in one sentence what you believe you were made to do. Keep it."
+    },
+    "DGSP": {
+      "code": "DGSP",
+      "name": "The Quiet Leader",
+      "identity": "[STUB] You carry your family with discipline. Your identity is still forming.",
+      "strength": "[STUB] You are a reliable provider and protector.",
+      "blindSpot": "[STUB] You have not yet answered the question of who you are beyond your role.",
+      "quranAnchor": "[STUB] Whoever fears Allah, He will make for him a way out.",
+      "anchorSource": "Qur'an 65:2",
+      "nextStep": "[STUB] Spend 10 minutes alone this week asking: what does Allah want from me specifically?"
+    },
+    "DGPC": {
+      "code": "DGPC",
+      "name": "The Brotherhood Man",
+      "identity": "[STUB] Your circle is strong. Bring that same strength home.",
+      "strength": "[STUB] You invest in other men — that is rare.",
+      "blindSpot": "[STUB] Your home does not get what your brotherhood gets.",
+      "quranAnchor": "[STUB] And cooperate in righteousness and piety.",
+      "anchorSource": "Qur'an 5:2",
+      "nextStep": "[STUB] Apply one thing from your brotherhood to your relationship with your wife this week."
+    },
+    "DGPI": {
+      "code": "DGPI",
+      "name": "The Lone Carrier",
+      "identity": "[STUB] You carry your weight alone. That is strength — and also a gap.",
+      "strength": "[STUB] You are self-reliant and do not burden others.",
+      "blindSpot": "[STUB] You have cut yourself off from the men who could help you grow.",
+      "quranAnchor": "[STUB] And remind, for indeed the reminder benefits the believers.",
+      "anchorSource": "Qur'an 51:55",
+      "nextStep": "[STUB] Go to Jumu'ah this week and stay after — introduce yourself to one man."
+    },
+    "DRSC": {
+      "code": "DRSC",
+      "name": "The Present Man",
+      "identity": "[STUB] You are in the room for the people who matter. Now lead from the front.",
+      "strength": "[STUB] Your people feel your presence.",
+      "blindSpot": "[STUB] Presence without direction leaves your family without a map.",
+      "quranAnchor": "[STUB] Men are the caretakers of women.",
+      "anchorSource": "Qur'an 4:34",
+      "nextStep": "[STUB] Name one direction you want to take your family in the next year — and say it out loud to them."
+    },
+    "DRSP": {
+      "code": "DRSP",
+      "name": "The Unfinished Man",
+      "identity": "[STUB] You are still becoming who you are supposed to be. That is not failure — that is honesty.",
+      "strength": "[STUB] You have not stopped trying.",
+      "blindSpot": "[STUB] You are drifting in too many areas at once.",
+      "quranAnchor": "[STUB] So race to all that is good.",
+      "anchorSource": "Qur'an 2:148",
+      "nextStep": "[STUB] Pick the one area of your life that — if you fixed it — would fix everything else. Start there."
+    },
+    "DRPC": {
+      "code": "DRPC",
+      "name": "The Social Man",
+      "identity": "[STUB] You are surrounded by people. Now go deeper with yourself.",
+      "strength": "[STUB] You are not isolated — that matters.",
+      "blindSpot": "[STUB] Surface community is not the same as real brotherhood.",
+      "quranAnchor": "[STUB] O you who believe, fear Allah and be with the truthful.",
+      "anchorSource": "Qur'an 9:119",
+      "nextStep": "[STUB] Have one real conversation this week — not small talk. Something that costs you something to say."
+    },
+    "DRPI": {
+      "code": "DRPI",
+      "name": "The Drifter",
+      "identity": "[STUB] You are going through the motions. The fact that you took this means something in you wants more.",
+      "strength": "[STUB] You showed up for this. That is the first step.",
+      "blindSpot": "[STUB] You are managing life, not leading it.",
+      "quranAnchor": "[STUB] Has the time not come for those who have believed that their hearts should become humbly submissive at the remembrance of Allah?",
+      "anchorSource": "Qur'an 57:16",
+      "nextStep": "[STUB] Pray Fajr on time tomorrow. Not a plan — just tomorrow. Then the day after."
+    }
+  }
+}

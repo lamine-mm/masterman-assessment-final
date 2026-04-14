@@ -1,0 +1,14 @@
+{
+  "likertValues": {
+    "stronglyAgree": 2,
+    "agree": 1,
+    "neutral": 0,
+    "disagree": -1,
+    "stronglyDisagree": -2
+  },
+  "scenarioWeight": 2,
+  "axisRawMin": -12,
+  "axisRawMax": 12,
+  "stageThresholds": [25, 50, 75],
+  "midpointSensitivity": 0.10
+}

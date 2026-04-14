@@ -1,0 +1,85 @@
+{
+  "_comment": "Opening angles for sales/coaching calls. One entry per type code. stageEarly = stages 1-2 (The Drifter / The Builder). stageLate = stages 3-4 (The Anchored / The Shepherd). closeCallSuffix appended when midpointFlags exist — {AXES} replaced with axis names at runtime.",
+  "angles": {
+    "AGSC": {
+      "stageEarly": "{name}, your result shows a man who has the pattern right but not yet the consistency. You know what you should be — the hard part is doing it day after day without someone holding you to it. That is what this conversation is about.",
+      "stageLate": "{name}, you are already doing what most men only talk about. The question is not whether you lead — you do. The question is whether you are raising the men around you, or just carrying them.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "AGSI": {
+      "stageEarly": "{name}, you have discipline and you lead your family well — but you are doing it alone. A man who governs himself and leads his house with no brothers around him will eventually burn out or miss something he should not have missed.",
+      "stageLate": "{name}, your inner life and your family are in good shape. The one gap is brothers who know what you are actually going through. Isolation at your level is not humility — it is a blind spot.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "AGPC": {
+      "stageEarly": "{name}, you know who you are and you keep yourself in check — that is rare. But at home you go quiet when you should lead. Your wife and children need the same man your brothers see.",
+      "stageLate": "{name}, your identity is clear and your brotherhood is strong. The gap is in your house. Men outside your home see your strength. Your family sees your avoidance.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "AGPI": {
+      "stageEarly": "{name}, you have real discipline and a clear sense of who you are. But you carry it alone and you do not lead your home the way you govern yourself. That gap will cost you.",
+      "stageLate": "{name}, your inner life is strong. Your outer life — your home, your brothers — does not reflect it yet. The gap between who you are and how you show up is exactly what this work addresses.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "ARSC": {
+      "stageEarly": "{name}, you know your purpose and you lead your family — but your nafs is getting in the way. Anger, distraction, broken promises to yourself. These are the cracks that eventually show up at home.",
+      "stageLate": "{name}, you lead well and your brotherhood is real. The unfinished work is in the nafs — the patterns between your ears that still run ahead of your intention.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "ARSI": {
+      "stageEarly": "{name}, you lead your family and your purpose is clear. But you are reactive and you are alone. A man who leads without governing himself and without brothers to correct him is at risk he cannot see.",
+      "stageLate": "{name}, clear purpose and family leadership — those are real strengths. The two missing pieces are self-governance and a circle of men you trust enough to be honest with.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "ARPC": {
+      "stageEarly": "{name}, your identity is strong and your brotherhood is real. But at home you go quiet, and in yourself you are still reactive. You have the right people around you — now the work is the man they see when no one else is watching.",
+      "stageLate": "{name}, your sense of purpose is intact and your brothers are real. The work is internal — governing the nafs and leading your home with the same conviction you bring to everything else.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "ARPI": {
+      "stageEarly": "{name}, your identity axis is the one strong leg of your result. Your nafs, your home leadership, your brotherhood — all three need work. The good news is your foundation is there. The question is whether you will build on it.",
+      "stageLate": "{name}, you know who you are — that is more than most men can say. But you are alone, reactive, and you avoid leading at home. Purpose without structure is potential that never lands.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DGSC": {
+      "stageEarly": "{name}, you are disciplined and connected to real brothers. But you are drifting — not because you lack structure, but because your purpose is not clear. A disciplined man without direction is just spinning his wheels efficiently.",
+      "stageLate": "{name}, your consistency and your brotherhood are real assets. The gap is knowing why you are doing all of it. Clarity of purpose is what turns a disciplined man into a leading man.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DGSI": {
+      "stageEarly": "{name}, you govern yourself well and you lead your household. But you are drifting in purpose and you are alone in it. Direction and brotherhood — those are the two things missing.",
+      "stageLate": "{name}, your nafs and your family are in good shape. The work is clarifying your why and finding brothers who will hold you to it. One without the other will not move the needle.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DGPC": {
+      "stageEarly": "{name}, you keep yourself in check and your brothers are real. But your purpose is not clear, and at home you wait rather than lead. Discipline without direction and home leadership is incomplete.",
+      "stageLate": "{name}, your self-governance and your brotherhood are strengths. What is missing is a clear reason why — and the willingness to lead the hard conversations at home.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DGPI": {
+      "stageEarly": "{name}, you are more self-disciplined than most men who come through this. That is real. But you are drifting, alone, and not leading your home. Discipline is the foundation — but it is only the foundation.",
+      "stageLate": "{name}, your personal discipline is notable. Purpose, home leadership, and brotherhood still need building. You have the self-control to do it. What you need is direction and men who will walk it with you.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DRSC": {
+      "stageEarly": "{name}, you lead your family and your brothers know you — that is the good news. The hard news is your purpose is unclear and your nafs still runs you. The men around you see your leadership. You are the only one who knows about the chaos inside.",
+      "stageLate": "{name}, your family and your brotherhood are real strengths. The missing work is in you — clarifying your why and governing what goes on between your ears.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DRSI": {
+      "stageEarly": "{name}, you are showing up for your family. That matters. But you are drifting, reactive, and alone — and the three together are a pattern that catches up with family men fast.",
+      "stageLate": "{name}, you lead at home but the foundation underneath is thin. Purpose, self-governance, and brotherhood are the three things your result is pointing at.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DRPC": {
+      "stageEarly": "{name}, you have real brothers around you — that is worth more than you might realize right now. But your purpose is unclear, you are reactive, and you are not leading your home. The brotherhood is the seed. Now it needs to grow the rest.",
+      "stageLate": "{name}, you are connected to men who could help you, and that is not nothing. The work ahead is using that brotherhood to find your direction and build the disciplines you do not yet have.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    },
+    "DRPI": {
+      "stageEarly": "{name}, your result is honest — and honest is where we start. You are drifting, reactive, not leading your home, and carrying it alone. That is a hard combination. None of it is permanent. But none of it fixes itself either.",
+      "stageLate": "{name}, you answered honestly — that alone separates you from men who will not look. All four areas have room to grow. The path forward is clear, even if it is not easy.",
+      "closeCallSuffix": "Your {AXES} score landed close to the middle. That is worth talking through — small shifts there change the whole picture."
+    }
+  }
+}

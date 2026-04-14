@@ -1,0 +1,39 @@
+{
+  "_comment": "STUB copy. Replace all values with Shaykh-approved content before launch.",
+  "landing": {
+    "hero": "[STUB] Find out who you actually are as a Muslim man.",
+    "subhero": "[STUB] A 4-minute diagnostic — verified by scholars and therapists. No fluff. Just an honest mirror.",
+    "cta": "Take 4 minutes. Answer honestly."
+  },
+  "register": {
+    "title": "[STUB] Before we begin",
+    "body": "[STUB] Enter your details so we can send you your full result.",
+    "cta": "Continue"
+  },
+  "intro": {
+    "title": "[STUB] This is not a personality test.",
+    "body": "[STUB] It is a diagnostic. It will show you where you actually stand — not where you tell people you stand. Answer every question as if no one will see your answers. That is the only way this works.",
+    "cta": "Begin"
+  },
+  "thankYou": {
+    "title": "[STUB] You showed up. That matters.",
+    "body": "[STUB] Most men never stop long enough to ask these questions. You did. Now take the next step.",
+    "cta": "Learn about the Max Program",
+    "callBullets": [
+      "[STUB] What the Max Program covers",
+      "[STUB] Who it is for",
+      "[STUB] What the call looks like"
+    ]
+  },
+  "disclaimer": {
+    "short": "[STUB] This assessment is a personal growth tool, not a clinical diagnosis. It is not a substitute for professional mental health support.",
+    "long": "[STUB] The Masterman Assessment is an educational and self-reflection tool grounded in Islamic values. It is not a clinical assessment, psychological diagnosis, or substitute for professional mental health, marital, or religious counseling. Results reflect patterns in your answers and are intended to prompt honest reflection, not to label or define you. If you are facing a mental health crisis, please seek qualified professional support."
+  },
+  "share": {
+    "whatsappMessage": "[STUB] I just took the Masterman Assessment. My type is {TYPE_CODE} — {TYPE_NAME}. Take yours: {RESULT_URL}",
+    "copyLinkMessage": "Link copied!"
+  },
+  "loading": {
+    "scoringMessage": "Reading your answers…"
+  }
+}
