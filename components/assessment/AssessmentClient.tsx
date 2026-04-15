@@ -6,7 +6,6 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ProgressBar } from "@/components/assessment/ProgressBar";
 import { LikertQuestion } from "@/components/assessment/LikertQuestion";
 import { ScenarioQuestion } from "@/components/assessment/ScenarioQuestion";
-import { MarriageToggle } from "@/components/assessment/MarriageToggle";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/Container";
 import type { Answer, Question } from "@/lib/types";
@@ -29,7 +28,7 @@ export function AssessmentClient({
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
-  const [married, setMarried] = useState(initialMarried);
+  const married = initialMarried;
   const [submitting, setSubmitting] = useState(false);
   const [scoringOverlay, setScoringOverlay] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +47,7 @@ export function AssessmentClient({
 
   const pageComplete = pageQuestions.every((q) => answers[q.id] !== undefined);
   const isLastPage = currentPage === TOTAL_PAGES - 1;
-  const isMarriageModule = currentPage === 2;
+  const isMarriageModule = currentPage === 2; // used for hypothetical text on Likert questions
 
   // After each page change, scroll to top *after* the new questions are laid out.
   // Calling scrollTo in the same tick as setState races the old tall page and fails on mobile.
@@ -123,10 +122,6 @@ export function AssessmentClient({
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-8 sm:space-y-10"
           >
-            {isMarriageModule && (
-              <MarriageToggle married={married} onChange={setMarried} />
-            )}
-
             {pageQuestions.map((question) => {
               const currentValue = answers[question.id] ?? null;
 
@@ -139,6 +134,7 @@ export function AssessmentClient({
                     options={question.options}
                     value={currentValue}
                     onChange={(v) => handleAnswer(question.id, v)}
+                    married={married}
                   />
                 );
               }

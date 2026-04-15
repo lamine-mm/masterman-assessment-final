@@ -9,6 +9,7 @@ interface ScenarioQuestionProps {
   options: ScenarioOption[];
   value: number | null; // 0–3 (option index), null = unanswered
   onChange: (index: number) => void;
+  married?: boolean; // when false, use labelHypothetical if present
 }
 
 export function ScenarioQuestion({
@@ -17,6 +18,7 @@ export function ScenarioQuestion({
   options,
   value,
   onChange,
+  married = true,
 }: ScenarioQuestionProps) {
   const labelId = `${id}-scenario`;
   return (
@@ -62,7 +64,7 @@ export function ScenarioQuestion({
                 )}
               </span>
               <span className="text-sm sm:text-[15px] leading-relaxed text-foreground/95">
-                {opt.label}
+                {(!married && opt.labelHypothetical) ? opt.labelHypothetical : opt.label}
               </span>
             </div>
           </button>

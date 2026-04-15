@@ -40,6 +40,7 @@ export interface LikertQuestion {
 
 export interface ScenarioOption {
   label: string;
+  labelHypothetical?: string; // alternate label for unmarried respondents (Module 4 Q20)
   score: number; // 1 or 2
   pole: "A" | "B";
 }

@@ -8,7 +8,7 @@ interface MastermanLogoProps {
 export function MastermanLogo({ size = 48, className }: MastermanLogoProps) {
   return (
     <Image
-      src="/logo.png"
+      src="/MasterMan_Logo_WhiteText_ColorImage.png"
       alt="Masterman"
       width={size}
       height={size}

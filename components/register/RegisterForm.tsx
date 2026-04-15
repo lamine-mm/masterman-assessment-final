@@ -8,45 +8,140 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MastermanLogo } from "@/components/ui/MastermanLogo";
 import type { CopyContent } from "@/lib/types";
 
-// Most common calling codes for Muslim professional diaspora + key markets
 const CALLING_CODES = [
-  { code: "+1",   label: "🇺🇸🇨🇦 +1  (USA / Canada)" },
-  { code: "+44",  label: "🇬🇧 +44 (UK)" },
-  { code: "+33",  label: "🇫🇷 +33 (France)" },
-  { code: "+49",  label: "🇩🇪 +49 (Germany)" },
-  { code: "+31",  label: "🇳🇱 +31 (Netherlands)" },
-  { code: "+32",  label: "🇧🇪 +32 (Belgium)" },
-  { code: "+46",  label: "🇸🇪 +46 (Sweden)" },
-  { code: "+47",  label: "🇳🇴 +47 (Norway)" },
-  { code: "+45",  label: "🇩🇰 +45 (Denmark)" },
-  { code: "+61",  label: "🇦🇺 +61 (Australia)" },
-  { code: "+971", label: "🇦🇪 +971 (UAE)" },
-  { code: "+966", label: "🇸🇦 +966 (Saudi Arabia)" },
-  { code: "+974", label: "🇶🇦 +974 (Qatar)" },
-  { code: "+965", label: "🇰🇼 +965 (Kuwait)" },
-  { code: "+973", label: "🇧🇭 +973 (Bahrain)" },
-  { code: "+968", label: "🇴🇲 +968 (Oman)" },
-  { code: "+962", label: "🇯🇴 +962 (Jordan)" },
-  { code: "+20",  label: "🇪🇬 +20  (Egypt)" },
-  { code: "+92",  label: "🇵🇰 +92  (Pakistan)" },
-  { code: "+880", label: "🇧🇩 +880 (Bangladesh)" },
-  { code: "+91",  label: "🇮🇳 +91  (India)" },
-  { code: "+60",  label: "🇲🇾 +60  (Malaysia)" },
-  { code: "+62",  label: "🇮🇩 +62  (Indonesia)" },
-  { code: "+234", label: "🇳🇬 +234 (Nigeria)" },
-  { code: "+233", label: "🇬🇭 +233 (Ghana)" },
-  { code: "+212", label: "🇲🇦 +212 (Morocco)" },
-  { code: "+213", label: "🇩🇿 +213 (Algeria)" },
-  { code: "+216", label: "🇹🇳 +216 (Tunisia)" },
-  { code: "+90",  label: "🇹🇷 +90  (Turkey)" },
+  // North America
+  { code: "+1",   label: "+1   USA / Canada" },
+  { code: "+52",  label: "+52  Mexico" },
+  // Western Europe
+  { code: "+44",  label: "+44  UK" },
+  { code: "+33",  label: "+33  France" },
+  { code: "+49",  label: "+49  Germany" },
+  { code: "+31",  label: "+31  Netherlands" },
+  { code: "+32",  label: "+32  Belgium" },
+  { code: "+41",  label: "+41  Switzerland" },
+  { code: "+43",  label: "+43  Austria" },
+  { code: "+46",  label: "+46  Sweden" },
+  { code: "+47",  label: "+47  Norway" },
+  { code: "+45",  label: "+45  Denmark" },
+  { code: "+358", label: "+358 Finland" },
+  { code: "+353", label: "+353 Ireland" },
+  { code: "+351", label: "+351 Portugal" },
+  { code: "+34",  label: "+34  Spain" },
+  { code: "+39",  label: "+39  Italy" },
+  { code: "+30",  label: "+30  Greece" },
+  // Eastern Europe
+  { code: "+48",  label: "+48  Poland" },
+  { code: "+380", label: "+380 Ukraine" },
+  { code: "+7",   label: "+7   Russia / Kazakhstan" },
+  { code: "+90",  label: "+90  Turkey" },
+  { code: "+40",  label: "+40  Romania" },
+  { code: "+36",  label: "+36  Hungary" },
+  { code: "+420", label: "+420 Czech Republic" },
+  // Oceania
+  { code: "+61",  label: "+61  Australia" },
+  { code: "+64",  label: "+64  New Zealand" },
+  // Gulf / Middle East
+  { code: "+971", label: "+971 UAE" },
+  { code: "+966", label: "+966 Saudi Arabia" },
+  { code: "+974", label: "+974 Qatar" },
+  { code: "+965", label: "+965 Kuwait" },
+  { code: "+973", label: "+973 Bahrain" },
+  { code: "+968", label: "+968 Oman" },
+  { code: "+962", label: "+962 Jordan" },
+  { code: "+961", label: "+961 Lebanon" },
+  { code: "+972", label: "+972 Palestine / Israel" },
+  { code: "+964", label: "+964 Iraq" },
+  { code: "+963", label: "+963 Syria" },
+  { code: "+967", label: "+967 Yemen" },
+  { code: "+98",  label: "+98  Iran" },
+  // Africa — North
+  { code: "+20",  label: "+20  Egypt" },
+  { code: "+212", label: "+212 Morocco" },
+  { code: "+213", label: "+213 Algeria" },
+  { code: "+216", label: "+216 Tunisia" },
+  { code: "+218", label: "+218 Libya" },
+  { code: "+249", label: "+249 Sudan" },
+  // Africa — West
+  { code: "+234", label: "+234 Nigeria" },
+  { code: "+233", label: "+233 Ghana" },
+  { code: "+221", label: "+221 Senegal" },
+  { code: "+223", label: "+223 Mali" },
+  { code: "+226", label: "+226 Burkina Faso" },
+  { code: "+225", label: "+225 Côte d'Ivoire" },
+  { code: "+224", label: "+224 Guinea" },
+  { code: "+220", label: "+220 Gambia" },
+  { code: "+227", label: "+227 Niger" },
+  // Africa — East
+  { code: "+254", label: "+254 Kenya" },
+  { code: "+255", label: "+255 Tanzania" },
+  { code: "+256", label: "+256 Uganda" },
+  { code: "+251", label: "+251 Ethiopia" },
+  { code: "+252", label: "+252 Somalia" },
+  { code: "+253", label: "+253 Djibouti" },
+  // Africa — South
+  { code: "+27",  label: "+27  South Africa" },
+  // South Asia
+  { code: "+92",  label: "+92  Pakistan" },
+  { code: "+880", label: "+880 Bangladesh" },
+  { code: "+91",  label: "+91  India" },
+  { code: "+94",  label: "+94  Sri Lanka" },
+  { code: "+977", label: "+977 Nepal" },
+  { code: "+93",  label: "+93  Afghanistan" },
+  // Southeast Asia
+  { code: "+60",  label: "+60  Malaysia" },
+  { code: "+62",  label: "+62  Indonesia" },
+  { code: "+63",  label: "+63  Philippines" },
+  { code: "+65",  label: "+65  Singapore" },
+  { code: "+66",  label: "+66  Thailand" },
+  { code: "+84",  label: "+84  Vietnam" },
+  { code: "+95",  label: "+95  Myanmar" },
+  // East Asia
+  { code: "+86",  label: "+86  China" },
+  { code: "+81",  label: "+81  Japan" },
+  { code: "+82",  label: "+82  South Korea" },
+  { code: "+852", label: "+852 Hong Kong" },
+  { code: "+886", label: "+886 Taiwan" },
+  // Central Asia
+  { code: "+7",   label: "+7   Kazakhstan" },
+  { code: "+998", label: "+998 Uzbekistan" },
+  { code: "+992", label: "+992 Tajikistan" },
+  { code: "+996", label: "+996 Kyrgyzstan" },
+  { code: "+993", label: "+993 Turkmenistan" },
+  { code: "+994", label: "+994 Azerbaijan" },
 ];
 
 const COUNTRIES = [
-  "United States", "United Kingdom", "Canada", "Australia",
-  "France", "Germany", "Netherlands", "Belgium", "Sweden", "Norway", "Denmark",
+  // North America
+  "United States", "Canada", "Mexico",
+  // Western Europe
+  "United Kingdom", "France", "Germany", "Netherlands", "Belgium", "Switzerland",
+  "Austria", "Sweden", "Norway", "Denmark", "Finland", "Ireland", "Portugal",
+  "Spain", "Italy", "Greece",
+  // Eastern Europe
+  "Poland", "Ukraine", "Russia", "Romania", "Hungary", "Czech Republic",
+  // Oceania
+  "Australia", "New Zealand",
+  // Gulf / Middle East
   "UAE", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman", "Jordan",
-  "Egypt", "Pakistan", "Bangladesh", "India", "Malaysia", "Indonesia",
-  "Nigeria", "Ghana", "Morocco", "Algeria", "Tunisia", "Turkey",
+  "Lebanon", "Palestine", "Iraq", "Syria", "Yemen", "Iran", "Turkey",
+  // Africa — North
+  "Egypt", "Morocco", "Algeria", "Tunisia", "Libya", "Sudan",
+  // Africa — West
+  "Nigeria", "Ghana", "Senegal", "Mali", "Burkina Faso", "Côte d'Ivoire",
+  "Guinea", "Gambia", "Niger",
+  // Africa — East
+  "Kenya", "Tanzania", "Uganda", "Ethiopia", "Somalia", "Djibouti",
+  // Africa — South
+  "South Africa",
+  // South Asia
+  "Pakistan", "Bangladesh", "India", "Sri Lanka", "Nepal", "Afghanistan",
+  // Southeast Asia
+  "Malaysia", "Indonesia", "Philippines", "Singapore", "Thailand",
+  "Vietnam", "Myanmar",
+  // East Asia
+  "China", "Japan", "South Korea", "Hong Kong", "Taiwan",
+  // Central Asia
+  "Kazakhstan", "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Azerbaijan",
   "Other",
 ];
 

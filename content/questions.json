@@ -201,7 +201,7 @@
       "options": [
         { "label": "Two or three brothers I trust — and we have talked about it.", "score": 2, "pole": "A" },
         { "label": "One brother knows part of it.", "score": 1, "pole": "A" },
-        { "label": "Only my wife knows.", "score": 1, "pole": "B" },
+        { "label": "Only my wife knows.", "labelHypothetical": "Only my parents know.", "score": 1, "pole": "B" },
         { "label": "Nobody. I am handling it alone.", "score": 2, "pole": "B" }
       ]
     }

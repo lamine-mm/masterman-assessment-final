@@ -33,15 +33,12 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="w-full max-w-sm space-y-3">
+          <div className="w-full max-w-sm">
             <Link href="/register" className="block w-full">
               <Button size="lg" className="w-full">
                 {copy.landing.cta}
               </Button>
             </Link>
-            <p className="text-xs text-muted-foreground text-center">
-              Takes 4 minutes. Answer honestly.
-            </p>
           </div>
         </Container>
       </div>
