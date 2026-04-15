@@ -1,8 +1,9 @@
 /**
  * POST /api/register
- * Captures lead (name, email, phone) before the assessment begins.
+ * Captures lead before the assessment begins.
  * Creates Supabase lead row + ConvertKit subscriber.
  * Returns { leadId } — stored in a cookie for the assessment session.
+ * Also stores married status in a cookie so the assessment can pre-fill Module 3.
  */
 
 import { NextResponse } from "next/server";
@@ -12,9 +13,12 @@ import { onLeadRegistered } from "@/lib/convertkit";
 import { fireLeadCaptured } from "@/lib/webhooks";
 
 const BodySchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Valid email required"),
-  phone: z.string().optional(),
+  name:    z.string().min(1, "Name is required"),
+  email:   z.string().email("Valid email required"),
+  phone:   z.string().optional(),
+  country: z.string().optional(),
+  age:     z.number().int().min(10).max(120).optional(),
+  married: z.boolean().optional(),
 });
 
 export async function POST(request: Request) {
@@ -33,17 +37,13 @@ export async function POST(request: Request) {
     );
   }
 
-  const { name, email, phone } = parsed.data;
+  const { name, email, phone, country, age, married } = parsed.data;
 
   // 1. Persist lead to Supabase
-  const lead = await createLead({ name, email, phone });
+  const lead = await createLead({ name, email, phone, country, age });
 
-  // 2. Create ConvertKit subscriber (non-blocking — errors are logged, not thrown)
-  const subscriberId = await onLeadRegistered({
-    email,
-    firstName: name,
-    phone,
-  });
+  // 2. Create ConvertKit subscriber (non-blocking)
+  const subscriberId = await onLeadRegistered({ email, firstName: name, phone });
 
   // 3. Store CK subscriber ID back on the lead row
   if (subscriberId) {
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
 
   const response = NextResponse.json({ leadId: lead.id }, { status: 201 });
 
-  // Store leadId in a cookie so /assessment can read it server-side
+  // leadId cookie — read by /api/submit
   response.cookies.set("lead_id", lead.id, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -67,6 +67,17 @@ export async function POST(request: Request) {
     maxAge: 60 * 60 * 2, // 2 hours
     path: "/",
   });
+
+  // married cookie — read by /assessment to pre-fill Module 3 toggle
+  if (married !== undefined) {
+    response.cookies.set("married", married ? "1" : "0", {
+      httpOnly: false, // client-readable so AssessmentClient can pick it up
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 2,
+      path: "/",
+    });
+  }
 
   return response;
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { TypeHero } from "@/components/result/TypeHero";
 import { RadialChart } from "@/components/result/RadialChart";
+import { MastermanLogo } from "@/components/ui/MastermanLogo";
 import type { AxisKey } from "@/lib/types";
 
 type Phase = "intro" | "hero" | "details";
@@ -77,7 +78,7 @@ export function ResultReveal({
             transition={{ duration: 0.4 }}
           >
             <div className="mb-2 flex justify-start">
-              <span className="text-label tracking-[0.14em]">Masterman</span>
+              <MastermanLogo size={36} />
             </div>
             <div id="result-hero">
               <TypeHero typeCode={typeCode} typeName={typeName} />

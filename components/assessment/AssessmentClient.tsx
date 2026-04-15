@@ -18,16 +18,18 @@ const QUESTIONS_PER_PAGE = 5;
 export interface AssessmentClientProps {
   questions: Question[];
   scoringMessage: string;
+  initialMarried?: boolean;
 }
 
 export function AssessmentClient({
   questions,
   scoringMessage,
+  initialMarried = true,
 }: AssessmentClientProps) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
-  const [married, setMarried] = useState(true);
+  const [married, setMarried] = useState(initialMarried);
   const [submitting, setSubmitting] = useState(false);
   const [scoringOverlay, setScoringOverlay] = useState(false);
   const [error, setError] = useState<string | null>(null);

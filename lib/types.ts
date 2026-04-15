@@ -120,6 +120,8 @@ export interface Lead {
   name: string;
   email: string;
   phone?: string;
+  country?: string;
+  age?: number;
   convertkitSubscriberId?: string;
   createdAt: string;
 }

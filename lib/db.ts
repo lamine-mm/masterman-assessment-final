@@ -32,6 +32,8 @@ export async function createLead(data: {
   name: string;
   email: string;
   phone?: string;
+  country?: string;
+  age?: number;
 }): Promise<Lead> {
   const { data: row, error } = await getSupabase()
     .from("leads")
@@ -39,6 +41,8 @@ export async function createLead(data: {
       name: data.name,
       email: data.email,
       phone: data.phone ?? null,
+      country: data.country ?? null,
+      age: data.age ?? null,
     })
     .select()
     .single();
@@ -121,6 +125,8 @@ function rowToLead(row: Record<string, unknown>): Lead {
     name: row.name as string,
     email: row.email as string,
     phone: row.phone as string | undefined,
+    country: row.country as string | undefined,
+    age: row.age as number | undefined,
     convertkitSubscriberId: row.convertkit_subscriber_id as string | undefined,
     createdAt: row.created_at as string,
   };
