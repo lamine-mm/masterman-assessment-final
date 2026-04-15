@@ -11,6 +11,9 @@ import { getResultById } from "@/lib/db";
 import { getTypeContent, getStageContent, getCopy } from "@/lib/content";
 import { AXIS_LABELS, AXIS_POLE_A, AXIS_POLE_B, type AxisKey } from "@/lib/types";
 
+// AXES used for the type code legend only
+
+
 const AXES: AxisKey[] = ["A", "G", "S", "C"];
 
 export default async function ResultPage({
@@ -124,25 +127,6 @@ export default async function ResultPage({
               meaning={stageContent.meaning}
             />
           ) : null}
-
-          {/* ── Radial chart explanation ─────────────────────────────────── */}
-          <Card variant="subtle">
-            <CardContent className="pt-5 pb-5 px-5 space-y-3">
-              <p className="text-label">How to read the diagram</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                The four points on the chart show how you scored across each area of your life. The further a point extends from the center, the more strongly that trait shows up in you. Where two points sit close to the middle, that is a sign of tension — which often means the most room to grow.
-              </p>
-              <div className="pt-1 grid grid-cols-2 gap-x-4 gap-y-1.5">
-                {AXES.map((axis) => (
-                  <p key={axis} className="text-[11px] text-muted-foreground">
-                    <span className="text-foreground/70 font-medium">{AXIS_LABELS[axis as AxisKey]}</span>
-                    {" — "}
-                    {AXIS_POLE_A[axis as AxisKey]} vs {AXIS_POLE_B[axis as AxisKey]}
-                  </p>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
 
           {result.midpointFlags.length > 0 ? (
             <Card variant="subtle">

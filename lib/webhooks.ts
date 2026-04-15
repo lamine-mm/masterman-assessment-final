@@ -31,12 +31,22 @@ export interface AssessmentCompletedPayload {
   timestamp: string;
   resultId: string;
   leadId: string;
+  // Contact info — for setter CRM context
   name: string;
   email: string;
+  phone?: string;
+  country?: string;
+  age?: number;
+  // Type & stage — key talking points for the setter
   typeCode: string;
   typeName: string;
   stage: number;
   stageName: string;
+  // Setter brief — what to lead with on the call
+  strength: string;
+  blindSpot: string;
+  nextStep: string;
+  // Scores
   axisScores: { A: number; G: number; S: number; C: number };
   totalScore: number;
   midpointFlags: string[];

@@ -80,12 +80,22 @@ export async function POST(request: Request) {
     fireAssessmentCompleted({
       resultId: scored.resultId,
       leadId,
+      // Contact — setter needs all of these for the CRM record
       name: lead.name,
       email: lead.email,
+      phone: lead.phone,
+      country: lead.country,
+      age: lead.age,
+      // Type & stage
       typeCode: result.type,
       typeName: typeContent?.name ?? result.type,
       stage: result.stage,
       stageName: stageContent?.name ?? `Stage ${result.stage}`,
+      // Setter brief — lead with these on the call
+      strength: typeContent?.strength ?? "",
+      blindSpot: typeContent?.blindSpot ?? "",
+      nextStep: typeContent?.nextStep ?? "",
+      // Scores
       axisScores: result.axisScores as { A: number; G: number; S: number; C: number },
       totalScore: result.totalScore,
       midpointFlags: result.midpointFlags,

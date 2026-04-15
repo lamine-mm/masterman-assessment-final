@@ -5,7 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { TypeHero } from "@/components/result/TypeHero";
 import { RadialChart } from "@/components/result/RadialChart";
 import { MastermanLogo } from "@/components/ui/MastermanLogo";
-import type { AxisKey } from "@/lib/types";
+import { AXIS_LABELS, AXIS_POLE_A, AXIS_POLE_B, type AxisKey } from "@/lib/types";
+
+const AXES: AxisKey[] = ["A", "G", "S", "C"];
 
 type Phase = "intro" | "hero" | "details";
 
@@ -53,7 +55,7 @@ export function ResultReveal({
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 flex items-center justify-center bg-[hsl(225_14%_7%/0.9)] backdrop-blur-md px-6"
+            className="fixed inset-0 z-40 flex items-center justify-center bg-[#0d0d0b]/90 backdrop-blur-md px-6"
           >
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -77,26 +79,51 @@ export function ResultReveal({
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="mb-2 flex justify-start">
-              <MastermanLogo size={36} />
+            {/* Logo — centered */}
+            <div className="mb-3 flex justify-center">
+              <MastermanLogo size={40} />
             </div>
+
             <div id="result-hero">
               <TypeHero typeCode={typeCode} typeName={typeName} />
             </div>
+
+            {/* Radial chart */}
             <div className="mx-auto mt-1 w-full max-w-[min(94vw,440px)] overflow-visible px-0 sm:px-1">
               <motion.div
                 initial={reduced ? false : { opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               >
                 <RadialChart
                   axisScores={axisScores}
                   svgClassName="max-w-full sm:max-w-[420px]"
                 />
               </motion.div>
+            </div>
+
+            {/* Chart explanation — directly below the diagram */}
+            <div className="mt-4 px-2 sm:px-4">
+              <p className="text-[10px] uppercase tracking-[0.12em] font-medium text-muted-foreground text-center mb-2">
+                How to read this diagram
+              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-sm mx-auto mb-3">
+                Each point shows how strongly that trait shows in you. The further from the center, the more dominant the pole. Points near the middle signal tension — often where the most growth is.
+              </p>
+              <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 max-w-xs mx-auto">
+                {AXES.map((axis) => {
+                  const score = axisScores[axis];
+                  const isA = score > 0.5;
+                  const pole = isA ? AXIS_POLE_A[axis] : AXIS_POLE_B[axis];
+                  return (
+                    <p key={axis} className="text-[11px] text-muted-foreground text-center">
+                      <span className="text-primary font-semibold">{AXIS_LABELS[axis]}</span>
+                      {" · "}
+                      <span className="text-foreground/70">{pole}</span>
+                    </p>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         </section>
