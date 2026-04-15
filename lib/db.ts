@@ -47,6 +47,20 @@ export async function createLead(data: {
   return rowToLead(row);
 }
 
+export async function getLeadById(
+  leadId: string
+): Promise<Lead | null> {
+  const { data: row, error } = await getSupabase()
+    .from("leads")
+    .select("*")
+    .eq("id", leadId)
+    .single();
+
+  if (error?.code === "PGRST116") return null; // not found
+  if (error) throw new Error(`Failed to fetch lead: ${error.message}`);
+  return rowToLead(row);
+}
+
 export async function updateLeadCKSubscriberId(
   leadId: string,
   subscriberId: string

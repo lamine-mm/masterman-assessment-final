@@ -87,7 +87,9 @@ export interface TypeContent {
   name: string;
   identity: string;
   strength: string;
+  strengthDetail: string;
   blindSpot: string;
+  blindSpotDetail: string;
   quranAnchor: string;
   anchorSource: string;
   nextStep: string;

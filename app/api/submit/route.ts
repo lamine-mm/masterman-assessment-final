@@ -9,7 +9,7 @@ import { cookies } from "next/headers";
 import { z } from "zod";
 import { getQuestions, getTypeContent, getStageContent } from "@/lib/content";
 import { scoreAssessment } from "@/lib/scoring";
-import { createResult, getSupabase } from "@/lib/db";
+import { createResult, getLeadById } from "@/lib/db";
 import { onAssessmentComplete } from "@/lib/convertkit";
 import { fireAssessmentCompleted } from "@/lib/webhooks";
 
@@ -60,18 +60,14 @@ export async function POST(request: Request) {
   const scored = await createResult(leadId, result, married);
 
   // 5. Fire ConvertKit automation (non-blocking)
-  const { data: lead } = await getSupabase()
-    .from("leads")
-    .select("name, email, convertkit_subscriber_id")
-    .eq("id", leadId)
-    .single();
+  const lead = await getLeadById(leadId);
 
   if (lead?.email) {
     // ConvertKit automation
     onAssessmentComplete({
       email: lead.email,
-      firstName: lead.name ?? "",
-      subscriberId: lead.convertkit_subscriber_id ?? null,
+      firstName: lead.name,
+      subscriberId: lead.convertkitSubscriberId ?? null,
       typeCode: result.type,
       stage: result.stage,
     }).catch((err) => console.error("[submit] CK automation failed:", err));
@@ -84,7 +80,7 @@ export async function POST(request: Request) {
     fireAssessmentCompleted({
       resultId: scored.resultId,
       leadId,
-      name: lead.name ?? "",
+      name: lead.name,
       email: lead.email,
       typeCode: result.type,
       typeName: typeContent?.name ?? result.type,

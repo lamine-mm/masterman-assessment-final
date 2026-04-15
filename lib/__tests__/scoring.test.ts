@@ -128,7 +128,9 @@ describe("scoreAssessment", () => {
           value: q.scoringDirection === "A" ? 1 : 5,
         };
       }
-      return { questionId: q.id, value: 1 };
+      // unreachable — Question union is exhausted above
+      const _never: never = q;
+      return { questionId: (_never as unknown as { id: string }).id, value: 1 };
     });
 
     const result = scoreAssessment(answers, ALL_QUESTIONS);

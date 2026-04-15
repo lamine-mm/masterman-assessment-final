@@ -5,14 +5,9 @@ import { useRouter } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import type { CopyContent } from "@/lib/types";
 
-type RegisterCopy = {
-  title: string;
-  body: string;
-  cta: string;
-};
-
-export function RegisterForm({ copy }: { copy: RegisterCopy }) {
+export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

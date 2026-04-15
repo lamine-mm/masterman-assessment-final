@@ -150,7 +150,6 @@ export function RadialChart({
                 fontFamily="Inter, system-ui, sans-serif"
                 fontWeight="500"
                 fill={COLOR_LABEL}
-                textLength={undefined}
               >
                 {AXIS_LABELS[axis]}
               </text>

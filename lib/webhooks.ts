@@ -1,7 +1,7 @@
 /**
  * Outbound webhook fanout module.
  *
- * Fires JSON POST requests to configured external URLs (n8n, Zapier, etc.)
+ * Fires JSON POST requests to all configured external URLs in parallel,
  * with retry (1 retry on failure) and full audit logging to the webhook_log table.
  *
  * Non-blocking: callers fire-and-forget with .catch() — webhook failures
@@ -10,6 +10,7 @@
  * Env vars (optional — if unset, the corresponding webhook is silently skipped):
  *   OUTBOUND_WEBHOOK_LEAD_URL    — fires on lead registration
  *   OUTBOUND_WEBHOOK_RESULT_URL  — fires on assessment completion
+ *   OUTBOUND_WEBHOOK_GHL_URL     — GoHighLevel CRM; fires on both events
  */
 
 import { getSupabase } from "@/lib/db";
@@ -108,15 +109,22 @@ async function dispatch(
 
 // ─── High-level helpers ───────────────────────────────────────────────────────
 
+/** Collect all non-empty URLs from env vars into an array. */
+function collectUrls(...envKeys: string[]): string[] {
+  return envKeys
+    .map((k) => process.env[k]?.trim())
+    .filter((u): u is string => Boolean(u));
+}
+
 /**
- * Fire the lead-captured webhook.
- * Reads OUTBOUND_WEBHOOK_LEAD_URL from env — no-ops if unset.
+ * Fire the lead-captured webhook to all configured targets in parallel.
+ * Targets: OUTBOUND_WEBHOOK_LEAD_URL, OUTBOUND_WEBHOOK_GHL_URL
  */
 export async function fireLeadCaptured(
   data: Omit<LeadCapturedPayload, "event" | "timestamp">
 ): Promise<void> {
-  const url = process.env.OUTBOUND_WEBHOOK_LEAD_URL;
-  if (!url) return;
+  const urls = collectUrls("OUTBOUND_WEBHOOK_LEAD_URL", "OUTBOUND_WEBHOOK_GHL_URL");
+  if (urls.length === 0) return;
 
   const payload: LeadCapturedPayload = {
     event: "lead_captured",
@@ -124,18 +132,18 @@ export async function fireLeadCaptured(
     ...data,
   };
 
-  await dispatch("lead_captured", url, payload);
+  await Promise.allSettled(urls.map((url) => dispatch("lead_captured", url, payload)));
 }
 
 /**
- * Fire the assessment-completed webhook.
- * Reads OUTBOUND_WEBHOOK_RESULT_URL from env — no-ops if unset.
+ * Fire the assessment-completed webhook to all configured targets in parallel.
+ * Targets: OUTBOUND_WEBHOOK_RESULT_URL, OUTBOUND_WEBHOOK_GHL_URL
  */
 export async function fireAssessmentCompleted(
   data: Omit<AssessmentCompletedPayload, "event" | "timestamp">
 ): Promise<void> {
-  const url = process.env.OUTBOUND_WEBHOOK_RESULT_URL;
-  if (!url) return;
+  const urls = collectUrls("OUTBOUND_WEBHOOK_RESULT_URL", "OUTBOUND_WEBHOOK_GHL_URL");
+  if (urls.length === 0) return;
 
   const payload: AssessmentCompletedPayload = {
     event: "assessment_completed",
@@ -143,5 +151,5 @@ export async function fireAssessmentCompleted(
     ...data,
   };
 
-  await dispatch("assessment_completed", url, payload);
+  await Promise.allSettled(urls.map((url) => dispatch("assessment_completed", url, payload)));
 }

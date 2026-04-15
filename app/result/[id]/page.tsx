@@ -17,10 +17,8 @@ export default async function ResultPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [result, copy] = await Promise.all([
-    getResultById(id),
-    Promise.resolve(getCopy()),
-  ]);
+  const result = await getResultById(id);
+  const copy = getCopy();
 
   if (!result) notFound();
 
@@ -44,18 +42,24 @@ export default async function ResultPage({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <Card variant="subtle">
-                  <CardContent className="pt-5 pb-5 px-5">
+                  <CardContent className="pt-5 pb-6 px-5 space-y-2">
                     <p className="text-label mb-2">Your Strength</p>
-                    <p className="text-sm text-foreground leading-relaxed">
+                    <p className="text-sm font-medium text-foreground leading-relaxed">
                       {typeContent.strength}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {typeContent.strengthDetail}
                     </p>
                   </CardContent>
                 </Card>
                 <Card variant="subtle">
-                  <CardContent className="pt-5 pb-5 px-5">
+                  <CardContent className="pt-5 pb-6 px-5 space-y-2">
                     <p className="text-label mb-2">Your Blind Spot</p>
-                    <p className="text-sm text-foreground leading-relaxed">
+                    <p className="text-sm font-medium text-foreground leading-relaxed">
                       {typeContent.blindSpot}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {typeContent.blindSpotDetail}
                     </p>
                   </CardContent>
                 </Card>
