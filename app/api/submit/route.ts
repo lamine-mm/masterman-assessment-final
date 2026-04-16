@@ -4,7 +4,7 @@
  * Returns { resultId } — client redirects to /result/:resultId.
  */
 
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { cookies } from "next/headers";
 import { z } from "zod";
 import { getQuestions, getTypeContent, getStageContent } from "@/lib/content";
@@ -19,7 +19,7 @@ const AnswerSchema = z.object({
 });
 
 const BodySchema = z.object({
-  answers: z.array(AnswerSchema).min(1).max(20),
+  answers: z.array(AnswerSchema).min(20).max(20),
   married: z.boolean(),
 });
 
@@ -59,11 +59,11 @@ export async function POST(request: Request) {
   // 4. Persist result
   const scored = await createResult(leadId, result, married);
 
-  // 5. Fire ConvertKit automation (non-blocking)
-  const lead = await getLeadById(leadId);
+  // 5. CK + webhook run after response (function stays alive via after())
+  after(async () => {
+    const lead = await getLeadById(leadId);
+    if (!lead?.email) return;
 
-  if (lead?.email) {
-    // ConvertKit automation
     onAssessmentComplete({
       email: lead.email,
       firstName: lead.name,
@@ -72,38 +72,32 @@ export async function POST(request: Request) {
       stage: result.stage,
     }).catch((err) => console.error("[submit] CK automation failed:", err));
 
-    // Outbound webhook fanout (n8n / Zapier / Google Sheets)
     const typeContent = getTypeContent(result.type);
     const stageContent = getStageContent(result.stage);
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "";
 
-    // Await webhook so Vercel doesn't kill the function before it completes
     await fireAssessmentCompleted({
       resultId: scored.resultId,
       leadId,
-      // Contact — setter needs all of these for the CRM record
       name: lead.name,
       email: lead.email,
       phone: lead.phone,
       country: lead.country,
       age: lead.age,
-      // Type & stage
       typeCode: result.type,
       typeName: typeContent?.name ?? result.type,
       stage: result.stage,
       stageName: stageContent?.name ?? `Stage ${result.stage}`,
-      // Setter brief — lead with these on the call
       strength: typeContent?.strength ?? "",
       blindSpot: typeContent?.blindSpot ?? "",
       nextStep: typeContent?.nextStep ?? "",
-      // Scores
       axisScores: result.axisScores as { A: number; G: number; S: number; C: number },
       totalScore: result.totalScore,
       midpointFlags: result.midpointFlags,
       resultUrl: `${baseUrl}/result/${scored.resultId}`,
       pdfUrl: `${baseUrl}/api/result/${scored.resultId}/pdf`,
     }).catch((err) => console.error("[submit] Webhook fanout failed:", err));
-  }
+  });
 
   return NextResponse.json({ resultId: scored.resultId }, { status: 201 });
 }

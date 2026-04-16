@@ -9,6 +9,6 @@
   "scenarioWeight": 2,
   "axisRawMin": -12,
   "axisRawMax": 12,
-  "stageThresholds": [25, 50, 75],
+  "stageThresholds": [30, 55, 78],
   "midpointSensitivity": 0.10
 }

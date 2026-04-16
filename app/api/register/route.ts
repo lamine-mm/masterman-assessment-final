@@ -6,7 +6,7 @@
  * Also stores married status in a cookie so the assessment can pre-fill Module 3.
  */
 
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { z } from "zod";
 import { createLead, updateLeadCKSubscriberId } from "@/lib/db";
 import { onLeadRegistered } from "@/lib/convertkit";
@@ -42,21 +42,22 @@ export async function POST(request: Request) {
   // 1. Persist lead to Supabase
   const lead = await createLead({ name, email, phone, country, age });
 
-  // 2. Create ConvertKit subscriber — fire-and-forget so the response is instant
-  onLeadRegistered({ email, firstName: name, phone })
-    .then((subscriberId) => {
-      if (subscriberId) {
-        updateLeadCKSubscriberId(lead.id, subscriberId).catch((err) =>
-          console.error("[register] Failed to store CK subscriber ID:", err)
-        );
-      }
-    })
-    .catch((err) => console.error("[register] CK registration failed:", err));
+  // 2. CK + webhook run after response is sent (function stays alive via after())
+  after(() => {
+    onLeadRegistered({ email, firstName: name, phone })
+      .then((subscriberId) => {
+        if (subscriberId) {
+          updateLeadCKSubscriberId(lead.id, subscriberId).catch((err) =>
+            console.error("[register] Failed to store CK subscriber ID:", err)
+          );
+        }
+      })
+      .catch((err) => console.error("[register] CK registration failed:", err));
 
-  // 3. Fire outbound webhook (await so Vercel doesn't kill function early)
-  await fireLeadCaptured({ leadId: lead.id, name, email, phone }).catch((err) =>
-    console.error("[register] Webhook fanout failed:", err)
-  );
+    fireLeadCaptured({ leadId: lead.id, name, email, phone }).catch((err) =>
+      console.error("[register] Webhook fanout failed:", err)
+    );
+  });
 
   const response = NextResponse.json({ leadId: lead.id }, { status: 201 });
 

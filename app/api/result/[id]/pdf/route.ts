@@ -12,8 +12,9 @@ export async function GET(
 ) {
   const { id } = await params;
 
-  if (!id) {
-    return NextResponse.json({ error: "Missing result ID" }, { status: 400 });
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!id || !UUID_RE.test(id)) {
+    return NextResponse.json({ error: "Result not found" }, { status: 404 });
   }
 
   const result = await getResultById(id);

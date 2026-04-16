@@ -149,6 +149,19 @@ export default async function ResultPage({
             </Card>
           ) : null}
 
+          {/* ── Email notice ────────────────────────────────────────────── */}
+          <div className="flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/[0.04] px-4 py-3.5">
+            <span className="text-primary text-lg leading-none mt-0.5">&#9993;</span>
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-foreground leading-snug">
+                Your personalized roadmap is on its way.
+              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Check your inbox in the next few minutes. If you do not see it, check your spam or promotions folder.
+              </p>
+            </div>
+          </div>
+
           {/* ── Share ────────────────────────────────────────────────────── */}
           <div>
             <p className="text-sm font-medium text-foreground text-center mb-3">
