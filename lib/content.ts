@@ -10,6 +10,7 @@ import rawTypes from "@/content/types.json";
 import rawStages from "@/content/stages.json";
 import rawAngles from "@/content/opening-angles.json";
 import rawCopy from "@/content/copy.json";
+import rawStageRoadmaps from "@/content/stage-roadmaps.json";
 
 // ─── Question schemas ────────────────────────────────────────────────────────
 
@@ -82,6 +83,46 @@ const StagesFileSchema = z.object({
   stages: z.array(StageContentSchema),
 });
 
+// ─── Stage roadmap schema ────────────────────────────────────────────────────
+
+const RoadmapConstraintSchema = z.object({
+  title: z.string().min(1),
+  body: z.string().min(1),
+});
+
+const RoadmapSolutionSchema = z.object({
+  title: z.string().min(1),
+  body: z.string().min(1),
+  islamicAnchor: z.string().min(1),
+});
+
+const StageRoadmapSchema = z.object({
+  name: z.string().min(1),
+  tagline: z.string().min(1),
+  whatThisStageIs: z.string().min(1),
+  constraints: z.array(RoadmapConstraintSchema).min(3),
+  solutions: z.array(RoadmapSolutionSchema).min(3),
+  sevenDayPlan: z.object({
+    day1: z.string().min(1),
+    day2: z.string().min(1),
+    day3: z.string().min(1),
+    day4: z.string().min(1),
+    day5: z.string().min(1),
+    day6: z.string().min(1),
+    day7: z.string().min(1),
+  }),
+  advanceCriteria: z.string().min(1),
+  cta: z.object({
+    title: z.string().min(1),
+    body: z.string().min(1),
+    buttonText: z.string().min(1),
+  }),
+});
+
+const StageRoadmapsFileSchema = z.object({
+  stages: z.record(z.string(), StageRoadmapSchema),
+});
+
 // ─── Copy schema ─────────────────────────────────────────────────────────────
 
 const CopyFileSchema = z.object({
@@ -137,6 +178,15 @@ export function getStageContent(stage: 1 | 2 | 3 | 4) {
 
 export function getCopy() {
   return parse(CopyFileSchema, rawCopy, "copy.json");
+}
+
+export function getStageRoadmaps() {
+  return parse(StageRoadmapsFileSchema, rawStageRoadmaps, "stage-roadmaps.json").stages;
+}
+
+export function getStageRoadmap(stage: 1 | 2 | 3 | 4) {
+  const roadmaps = getStageRoadmaps();
+  return roadmaps[stage.toString()] ?? null;
 }
 
 // ─── Opening angles schema ────────────────────────────────────────────────────

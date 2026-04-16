@@ -77,7 +77,8 @@ export async function POST(request: Request) {
     const stageContent = getStageContent(result.stage);
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "";
 
-    fireAssessmentCompleted({
+    // Await webhook so Vercel doesn't kill the function before it completes
+    await fireAssessmentCompleted({
       resultId: scored.resultId,
       leadId,
       // Contact — setter needs all of these for the CRM record
@@ -100,6 +101,7 @@ export async function POST(request: Request) {
       totalScore: result.totalScore,
       midpointFlags: result.midpointFlags,
       resultUrl: `${baseUrl}/result/${scored.resultId}`,
+      pdfUrl: `${baseUrl}/api/result/${scored.resultId}/pdf`,
     }).catch((err) => console.error("[submit] Webhook fanout failed:", err));
   }
 

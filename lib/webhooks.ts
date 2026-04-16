@@ -51,6 +51,7 @@ export interface AssessmentCompletedPayload {
   totalScore: number;
   midpointFlags: string[];
   resultUrl: string;
+  pdfUrl: string;
 }
 
 type WebhookPayload = LeadCapturedPayload | AssessmentCompletedPayload;

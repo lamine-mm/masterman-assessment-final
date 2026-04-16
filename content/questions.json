@@ -42,7 +42,7 @@
       "module": "identity",
       "axis": "A",
       "type": "scenario",
-      "text": "Your boss asks you to do something that crosses an Islamic line. Nothing illegal — just wrong. What do you actually do?",
+      "text": "Your boss or business partner asks you to do something that crosses an Islamic line. Nothing illegal — just wrong. What do you actually do?",
       "weight": 2,
       "options": [
         { "label": "Push back respectfully and refuse, even if it costs me.", "score": 1, "pole": "A" },
@@ -74,7 +74,7 @@
       "module": "nafs",
       "axis": "G",
       "type": "likert",
-      "text": "My phone controls more of my day than I control of it.",
+      "text": "My desires control more of my day than I control of them.",
       "scoringDirection": "B",
       "weight": 1
     },
@@ -107,7 +107,7 @@
       "axis": "S",
       "type": "likert",
       "text": "My wife knows I will lead the household even when it is hard.",
-      "textHypothetical": "When I marry, in shaa Allah, I will lead my household even when it is hard.",
+      "textHypothetical": "When things get hard, I take the lead instead of waiting for someone else to step up.",
       "scoringDirection": "A",
       "weight": 1
     },
@@ -127,7 +127,7 @@
       "axis": "S",
       "type": "likert",
       "text": "My children see me pray more often than they see me on my phone.",
-      "textHypothetical": "My children will see me pray more often than they see me on my phone.",
+      "textHypothetical": "The people closest to me see me pray more often than they see me on my phone.",
       "scoringDirection": "A",
       "weight": 1
     },

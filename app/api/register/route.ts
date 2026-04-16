@@ -53,8 +53,8 @@ export async function POST(request: Request) {
     })
     .catch((err) => console.error("[register] CK registration failed:", err));
 
-  // 3. Fire outbound webhook (non-blocking)
-  fireLeadCaptured({ leadId: lead.id, name, email, phone }).catch((err) =>
+  // 3. Fire outbound webhook (await so Vercel doesn't kill function early)
+  await fireLeadCaptured({ leadId: lead.id, name, email, phone }).catch((err) =>
     console.error("[register] Webhook fanout failed:", err)
   );
 

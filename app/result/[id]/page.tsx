@@ -30,11 +30,14 @@ export default async function ResultPage({
   const typeContent = getTypeContent(result.type);
   const stageContent = getStageContent(result.stage);
   const resultUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/result/${id}`;
-  const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#";
+  const rawBookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#";
+  const bookingUrl = rawBookingUrl !== "#"
+    ? `${rawBookingUrl}${rawBookingUrl.includes("?") ? "&" : "?"}utm_source=masterman&utm_medium=assessment&utm_campaign=stage-${result.stage}`
+    : "#";
 
   return (
     <main className="min-h-dvh flex flex-col">
-      <Container className="max-w-xl flex-1 flex flex-col pt-3 sm:pt-4 pb-6">
+      <Container className="max-w-xl lg:max-w-2xl flex-1 flex flex-col pt-3 sm:pt-4 pb-6">
         <ResultReveal
           typeCode={result.type}
           typeName={typeContent?.name ?? result.type}
@@ -74,7 +77,7 @@ export default async function ResultPage({
                 &ldquo;{typeContent.identity}&rdquo;
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
                 <Card variant="subtle">
                   <CardContent className="pt-5 pb-6 px-5 space-y-2">
                     <p className="text-label mb-2">Your Strength</p>

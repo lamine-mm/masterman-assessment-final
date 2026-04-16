@@ -32,6 +32,7 @@ const MOCK_PAYLOAD = {
   totalScore: 68,
   midpointFlags: [] as string[],
   resultUrl: `${process.env.NEXT_PUBLIC_BASE_URL ?? "https://masterman.app"}/result/test-result-00000000`,
+  pdfUrl: `${process.env.NEXT_PUBLIC_BASE_URL ?? "https://masterman.app"}/api/result/test-result-00000000/pdf`,
 };
 
 export async function POST(request: Request) {
