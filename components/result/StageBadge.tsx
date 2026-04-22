@@ -6,19 +6,19 @@ interface StageBadgeProps {
 
 export function StageBadge({ stage, name, meaning }: StageBadgeProps) {
   return (
-    <div className="glass-subtle rounded-xl px-4 sm:px-5 py-4 flex items-start gap-3 sm:gap-4 border border-white/[0.08]">
+    <div className="surface rounded-md px-4 sm:px-5 py-4 flex items-start gap-3 sm:gap-4 border-t border-t-primary">
       <div
-        className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center bg-primary/5"
+        className="flex-shrink-0 w-10 h-10 rounded-full border border-primary flex items-center justify-center"
         aria-hidden="true"
       >
-        <span className="text-primary font-bold text-sm tabular-nums">
+        <span className="font-display text-primary text-lg tabular-nums">
           {stage}
         </span>
       </div>
 
       <div className="min-w-0 pt-0.5">
-        <p className="text-label mb-1">Your Stage</p>
-        <p className="font-semibold text-foreground text-[15px] leading-snug">
+        <p className="eyebrow mb-1.5">Your Stage</p>
+        <p className="font-display text-[20px] font-medium text-foreground leading-snug tracking-[-0.015em]">
           Stage {stage} — {name}
         </p>
         <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">

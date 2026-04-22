@@ -46,7 +46,7 @@ export default async function ResultPage({
           {/* ── Type code legend ────────────────────────────────────────── */}
           <Card variant="subtle">
             <CardContent className="pt-5 pb-5 px-5">
-              <p className="text-label mb-3">What your code means</p>
+              <p className="eyebrow mb-3">What your code means</p>
               <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
                 {AXES.map((axis) => {
                   const score = result.axisScores[axis as AxisKey];
@@ -57,12 +57,12 @@ export default async function ResultPage({
                   const letter = result.type[AXES.indexOf(axis)];
                   return (
                     <div key={axis} className="flex items-start gap-2">
-                      <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center text-[10px] font-bold text-primary">
+                      <span className="mt-0.5 shrink-0 w-6 h-6 rounded-sm border border-primary/40 bg-primary/10 flex items-center justify-center font-display text-[13px] text-primary">
                         {letter}
                       </span>
                       <div>
-                        <p className="text-xs font-medium text-foreground leading-tight">{pole}</p>
-                        <p className="text-[10px] text-muted-foreground">{AXIS_LABELS[axis as AxisKey]}</p>
+                        <p className="text-xs font-semibold text-foreground leading-tight">{pole}</p>
+                        <p className="text-[10px] uppercase tracking-[0.08em] text-muted-foreground">{AXIS_LABELS[axis as AxisKey]}</p>
                       </div>
                     </div>
                   );
@@ -73,15 +73,15 @@ export default async function ResultPage({
 
           {typeContent ? (
             <>
-              <p className="font-serif text-[22px] leading-snug text-center text-foreground px-1">
+              <p className="font-display italic text-[24px] sm:text-[28px] leading-[1.35] text-center text-foreground px-1">
                 &ldquo;{typeContent.identity}&rdquo;
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
                 <Card variant="subtle">
                   <CardContent className="pt-5 pb-6 px-5 space-y-2">
-                    <p className="text-label mb-2">Your Strength</p>
-                    <p className="text-sm font-medium text-foreground leading-relaxed">
+                    <p className="eyebrow mb-2">Your Strength</p>
+                    <p className="font-display text-[18px] text-foreground leading-snug">
                       {typeContent.strength}
                     </p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -91,8 +91,8 @@ export default async function ResultPage({
                 </Card>
                 <Card variant="subtle">
                   <CardContent className="pt-5 pb-6 px-5 space-y-2">
-                    <p className="text-label mb-2">Your Blind Spot</p>
-                    <p className="text-sm font-medium text-foreground leading-relaxed">
+                    <p className="eyebrow mb-2">Your Blind Spot</p>
+                    <p className="font-display text-[18px] text-foreground leading-snug">
                       {typeContent.blindSpot}
                     </p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -103,14 +103,14 @@ export default async function ResultPage({
               </div>
 
               <div className="px-1">
-                <div className="h-px max-w-xs mx-auto bg-primary/45" aria-hidden="true" />
-                <p className="mt-5 mb-5 text-base sm:text-[17px] text-foreground/95 leading-relaxed text-center italic px-2">
+                <div className="h-px max-w-xs mx-auto bg-primary/60" aria-hidden="true" />
+                <p className="mt-5 mb-3 font-display italic text-[20px] sm:text-[22px] text-foreground leading-[1.4] text-center px-2">
                   &ldquo;{typeContent.quranAnchor}&rdquo;
                 </p>
-                <p className="text-sm text-muted-foreground text-right pr-1 sm:pr-2">
+                <p className="text-[12px] italic text-muted-foreground text-right pr-1 sm:pr-2">
                   {typeContent.anchorSource}
                 </p>
-                <div className="h-px max-w-xs mx-auto mt-5 bg-primary/45" aria-hidden="true" />
+                <div className="h-px max-w-xs mx-auto mt-5 bg-primary/60" aria-hidden="true" />
               </div>
             </>
           ) : (
@@ -134,7 +134,7 @@ export default async function ResultPage({
           {result.midpointFlags.length > 0 ? (
             <Card variant="subtle">
               <CardContent className="pt-5 pb-5 px-5 space-y-2">
-                <p className="text-sm font-medium text-foreground">
+                <p className="font-display text-[18px] text-foreground leading-snug">
                   Some of your scores are close to the middle.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -150,10 +150,10 @@ export default async function ResultPage({
           ) : null}
 
           {/* ── Email notice ────────────────────────────────────────────── */}
-          <div className="flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/[0.04] px-4 py-3.5">
+          <div className="flex items-start gap-3 rounded-md border border-primary/30 bg-primary/[0.05] px-4 py-3.5">
             <span className="text-primary text-lg leading-none mt-0.5">&#9993;</span>
             <div className="space-y-1">
-              <p className="text-sm font-medium text-foreground leading-snug">
+              <p className="font-display text-[17px] text-foreground leading-snug">
                 Your personalized roadmap is on its way.
               </p>
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -164,7 +164,7 @@ export default async function ResultPage({
 
           {/* ── Share ────────────────────────────────────────────────────── */}
           <div>
-            <p className="text-sm font-medium text-foreground text-center mb-3">
+            <p className="eyebrow text-center mb-3">
               Share your result
             </p>
             <ShareBlock
@@ -176,9 +176,9 @@ export default async function ResultPage({
           </div>
 
           {/* ── CTA ─────────────────────────────────────────────────────── */}
-          <Card>
+          <Card variant="anchor">
             <CardContent className="pt-6 pb-6 px-5 sm:px-6 text-center space-y-3">
-              <p className="text-base font-semibold text-foreground">
+              <p className="font-display text-[22px] sm:text-[24px] text-foreground leading-snug tracking-[-0.015em]">
                 Ready to understand what this means for your life?
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">

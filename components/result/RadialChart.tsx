@@ -32,13 +32,13 @@ const MAX_R = 90; // outer ring radius
 const RINGS = 4; // concentric reference rings
 const LABEL_R = MAX_R + 22; // radius for axis labels
 
-// Gold (primary) — matches hsl(45 90% 58%)
-const COLOR_FILL = "hsla(45, 90%, 58%, 0.25)";
-const COLOR_STROKE = "hsl(45, 90%, 58%)";
-const COLOR_RING = "hsla(220, 10%, 80%, 0.08)";
-const COLOR_SPOKE = "hsla(220, 10%, 80%, 0.12)";
-const COLOR_LABEL = "hsl(220, 10%, 70%)";
-const COLOR_DOT = "hsl(45, 90%, 58%)";
+// Masterman gold + parchment — matches the website palette
+const COLOR_FILL = "hsla(42, 56%, 54%, 0.22)";
+const COLOR_STROKE = "hsl(42, 56%, 54%)";
+const COLOR_RING = "hsla(33, 8%, 63%, 0.14)";
+const COLOR_SPOKE = "hsla(33, 8%, 63%, 0.18)";
+const COLOR_LABEL = "hsl(33, 8%, 63%)";
+const COLOR_DOT = "hsl(42, 56%, 54%)";
 
 function polarToCartesian(angleDeg: number, r: number) {
   const rad = (angleDeg * Math.PI) / 180;
@@ -148,18 +148,19 @@ export function RadialChart({
                 textAnchor={anchor}
                 fontSize="11"
                 fontFamily="Inter, system-ui, sans-serif"
-                fontWeight="500"
+                fontWeight="600"
+                letterSpacing="0.08em"
                 fill={COLOR_LABEL}
               >
-                {AXIS_LABELS[axis]}
+                {AXIS_LABELS[axis].toUpperCase()}
               </text>
               <text
                 x={x}
-                y={y + 9}
+                y={y + 10}
                 textAnchor={anchor}
-                fontSize="12"
-                fontFamily="Inter, system-ui, sans-serif"
-                fontWeight="700"
+                fontSize="14"
+                fontFamily="Fraunces, Georgia, serif"
+                fontWeight="500"
                 fill={COLOR_STROKE}
               >
                 {poleLetter}

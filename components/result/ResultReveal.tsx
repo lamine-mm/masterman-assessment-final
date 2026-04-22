@@ -55,13 +55,13 @@ export function ResultReveal({
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 flex items-center justify-center bg-[#0d0d0b]/90 backdrop-blur-md px-6"
+            className="fixed inset-0 z-40 flex items-center justify-center bg-[#0E0E0D]/92 backdrop-blur-md px-6"
           >
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center text-2xl sm:text-3xl font-semibold tracking-tight text-foreground"
+              className="font-display text-center text-[32px] sm:text-[40px] font-medium tracking-[-0.015em] text-foreground"
             >
               Your results
             </motion.p>
@@ -81,7 +81,7 @@ export function ResultReveal({
           >
             {/* Logo — centered */}
             <div className="mb-3 flex justify-center">
-              <MastermanLogo size={40} />
+              <MastermanLogo size={68} />
             </div>
 
             <div id="result-hero">
@@ -104,7 +104,7 @@ export function ResultReveal({
 
             {/* Chart explanation — directly below the diagram */}
             <div className="mt-4 px-2 sm:px-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] font-medium text-muted-foreground text-center mb-2">
+              <p className="eyebrow text-center mb-2">
                 How to read this diagram
               </p>
               <p className="text-xs text-muted-foreground leading-relaxed text-center max-w-sm mx-auto mb-3">

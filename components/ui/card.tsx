@@ -3,13 +3,17 @@ import { cn } from "@/lib/utils";
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "subtle" }
+  React.HTMLAttributes<HTMLDivElement> & {
+    variant?: "default" | "subtle" | "anchor";
+  }
 >(({ className, variant = "default", ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-xl",
-      variant === "default" ? "glass" : "glass-subtle",
+      "rounded-md",
+      variant === "default" && "surface",
+      variant === "subtle" && "surface-2",
+      variant === "anchor" && "surface border-t border-t-primary",
       className
     )}
     {...props}
@@ -31,7 +35,10 @@ const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn("font-semibold leading-none tracking-tight", className)}
+    className={cn(
+      "font-display text-2xl font-medium leading-tight tracking-[-0.015em]",
+      className
+    )}
     {...props}
   />
 ));

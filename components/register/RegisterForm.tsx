@@ -146,10 +146,10 @@ const COUNTRIES = [
 ];
 
 const inputClass =
-  "w-full min-h-11 rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary";
+  "w-full min-h-11 rounded-sm border border-ink-600 bg-ink-900 px-3.5 text-[15px] text-foreground placeholder:text-parchment-500 focus:outline-none focus:border-ink-500 focus:shadow-[inset_0_0_0_1px_#4A4438] transition-colors";
 
 const selectClass =
-  "w-full min-h-11 rounded-xl border border-white/10 bg-[#141410] px-4 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary appearance-none";
+  "w-full min-h-11 rounded-sm border border-ink-600 bg-ink-900 px-3.5 text-[15px] text-foreground focus:outline-none focus:border-ink-500 appearance-none transition-colors";
 
 export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
   const router = useRouter();
@@ -208,11 +208,11 @@ export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
 
         {/* Logo */}
         <div className="flex justify-center mb-6">
-          <MastermanLogo size={52} />
+          <MastermanLogo size={88} />
         </div>
 
         <div className="text-center mb-8 space-y-2">
-          <h1 className="text-2xl sm:text-[1.65rem] font-bold text-foreground leading-tight tracking-tight">
+          <h1 className="font-display text-[32px] sm:text-[40px] font-medium text-foreground leading-[1.05] tracking-[-0.015em]">
             {copy.title}
           </h1>
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -331,10 +331,10 @@ export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
                       type="button"
                       onClick={() => setMarried(opt)}
                       className={[
-                        "flex-1 min-h-11 rounded-xl border text-sm font-medium transition-colors",
+                        "flex-1 min-h-11 rounded-sm border text-sm font-semibold transition-colors",
                         married === opt
                           ? "border-primary bg-primary/10 text-primary"
-                          : "border-white/10 bg-white/[0.04] text-muted-foreground hover:border-white/20",
+                          : "border-ink-600 bg-ink-900 text-muted-foreground hover:border-ink-500 hover:text-foreground",
                       ].join(" ")}
                     >
                       {opt === "yes" ? "Yes" : "No"}

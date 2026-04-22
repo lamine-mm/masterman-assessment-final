@@ -102,7 +102,7 @@ export function AssessmentClient({
 
   return (
     <div className="min-h-dvh flex flex-col pb-[5.25rem] sm:pb-24">
-      <div className="sticky top-0 z-20 frost-band border-b border-white/[0.07]">
+      <div className="sticky top-0 z-20 frost-band">
         <Container className="max-w-2xl">
           <ProgressBar
             currentPage={currentPage + 1}
@@ -164,7 +164,7 @@ export function AssessmentClient({
         )}
       </Container>
 
-      <div className="fixed bottom-0 inset-x-0 z-20 frost-band border-t border-white/[0.07] pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <div className="fixed bottom-0 inset-x-0 z-20 frost-band border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <Container className="max-w-2xl py-3 sm:py-4">
           <div className="flex gap-2 sm:gap-3 items-stretch">
             {currentPage > 0 ? (
@@ -195,7 +195,7 @@ export function AssessmentClient({
 
       {scoringOverlay ? (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(225_14%_5%/0.92)] backdrop-blur-md px-6"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[hsl(60_3%_5%/0.94)] backdrop-blur-md px-6"
           role="status"
           aria-live="polite"
         >

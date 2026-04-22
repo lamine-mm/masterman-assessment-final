@@ -7,14 +7,14 @@ export function TypeHero({ typeCode, typeName }: TypeHeroProps) {
   return (
     <div className="text-center px-1">
       <div
-        className="font-sans font-bold tracking-[0.22em] sm:tracking-[0.25em] text-primary"
+        className="font-display font-normal tracking-[0.18em] sm:tracking-[0.22em] text-primary"
         style={{ fontSize: "clamp(3.25rem, 16vw, 5.5rem)", lineHeight: 1.05 }}
         aria-label={`Your type: ${typeCode}`}
       >
         {typeCode.split("").join(" ")}
       </div>
 
-      <p className="mt-2 sm:mt-2.5 text-2xl font-medium text-foreground leading-tight">
+      <p className="mt-3 font-display text-[28px] sm:text-[32px] font-medium text-foreground leading-[1.1] tracking-[-0.015em]">
         {typeName}
       </p>
     </div>

@@ -19,7 +19,7 @@ export default async function ThankYouPage({
     <main className="min-h-dvh flex flex-col justify-center py-10 sm:py-12">
       <Container className="max-w-lg space-y-8 text-center">
         <div className="space-y-4">
-          <h1 className="text-2xl sm:text-[1.75rem] font-bold text-foreground leading-tight">
+          <h1 className="font-display text-[32px] sm:text-[40px] font-medium text-foreground leading-[1.05] tracking-[-0.015em]">
             {copy.thankYou.title}
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -59,7 +59,7 @@ export default async function ThankYouPage({
         {id ? (
           <Link
             href={`/result/${id}`}
-            className="inline-block text-sm text-muted-foreground underline underline-offset-4 decoration-white/25 hover:text-foreground hover:decoration-primary/50 transition-colors"
+            className="inline-block text-sm text-muted-foreground underline underline-offset-4 decoration-border hover:text-foreground hover:decoration-primary transition-colors"
           >
             Go back to your result
           </Link>

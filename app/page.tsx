@@ -13,21 +13,21 @@ export default function LandingPage() {
         <Container className="py-14 sm:py-16 text-center flex flex-col items-center gap-8 sm:gap-10">
 
           {/* Logo */}
-          <MastermanLogo size={72} />
+          <MastermanLogo size={120} />
 
-          <div className="space-y-5 sm:space-y-6 max-w-lg mx-auto">
+          <div className="space-y-6 sm:space-y-7 max-w-lg mx-auto">
             {/* Scholar + therapist badge */}
             <div className="flex justify-center">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/[0.07] px-3.5 py-1.5 text-[11px] sm:text-xs font-medium tracking-wide text-primary">
-                ✦ Islamic scholar &amp; therapist approved
+              <span className="inline-flex items-center gap-1.5 rounded-sm border border-ink-500 px-3 py-1 text-[11px] font-semibold tracking-[0.1em] uppercase text-muted-foreground">
+                Islamic scholar &amp; therapist approved
               </span>
             </div>
 
-            <div className="space-y-4">
-              <h1 className="text-[1.65rem] sm:text-3xl md:text-4xl font-bold leading-[1.2] text-foreground">
+            <div className="space-y-5">
+              <h1 className="font-display text-[40px] sm:text-[56px] md:text-[64px] font-medium leading-[1.05] tracking-[-0.015em] text-foreground">
                 {copy.landing.hero}
               </h1>
-              <p className="text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
+              <p className="text-[17px] text-muted-foreground leading-[1.55] max-w-md mx-auto">
                 {copy.landing.subhero}
               </p>
             </div>

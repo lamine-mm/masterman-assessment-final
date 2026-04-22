@@ -23,11 +23,11 @@ export function ScenarioQuestion({
   const labelId = `${id}-scenario`;
   return (
     <div className="space-y-4">
-      <div className="scenario-surface rounded-xl p-4 sm:p-5 space-y-2">
-        <span className="text-label">Scenario</span>
+      <div className="scenario-surface rounded-md p-4 sm:p-5 space-y-2 border-t border-t-primary/70">
+        <span className="eyebrow">Scenario</span>
         <p
           id={labelId}
-          className="text-base sm:text-[17px] leading-relaxed text-foreground"
+          className="font-display text-[20px] sm:text-[22px] leading-[1.3] text-foreground"
         >
           {text}
         </p>
@@ -46,17 +46,17 @@ export function ScenarioQuestion({
             aria-checked={value === idx}
             onClick={() => onChange(idx)}
             className={cn(
-              "w-full text-left px-4 py-3.5 rounded-xl border transition-colors duration-200 min-h-11 touch-manipulation",
+              "w-full text-left px-4 py-3.5 rounded-sm border transition-colors duration-200 min-h-11 touch-manipulation",
               value === idx
-                ? "border-primary bg-primary/[0.12] text-foreground shadow-[inset_0_0_0_1px_hsl(45_90%_58%/0.12)]"
-                : "border-white/10 bg-white/[0.03] text-muted-foreground hover:border-white/18 hover:bg-white/[0.06]"
+                ? "border-primary bg-primary/[0.08] text-foreground"
+                : "border-ink-600 bg-ink-900 text-muted-foreground hover:border-ink-500 hover:bg-ink-800 hover:text-foreground"
             )}
           >
             <div className="flex items-start gap-3">
               <span
                 className={cn(
                   "mt-0.5 flex-shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors",
-                  value === idx ? "border-primary" : "border-white/25"
+                  value === idx ? "border-primary" : "border-ink-500"
                 )}
               >
                 {value === idx && (

@@ -23,9 +23,9 @@ export function ProgressBar({
         )}
         <span className="text-label flex-shrink-0 tabular-nums">{percent}%</span>
       </div>
-      <div className="h-0.5 w-full rounded-full bg-white/[0.12] overflow-hidden">
+      <div className="h-[2px] w-full bg-ink-700 overflow-hidden">
         <div
-          className="h-full rounded-full bg-primary transition-[width] duration-500 ease-out"
+          className="h-full bg-primary transition-[width] duration-500 ease-out"
           style={{ width: `${percent}%` }}
         />
       </div>
