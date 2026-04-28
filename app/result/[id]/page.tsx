@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { getResultById } from "@/lib/db";
 import { getTypeContent, getStageContent, getCopy } from "@/lib/content";
 import { AXIS_LABELS, AXIS_POLE_A, AXIS_POLE_B, type AxisKey } from "@/lib/types";
+import { buildApplyUrl } from "@/lib/utils";
 
 // AXES used for the type code legend only
 
@@ -30,10 +31,7 @@ export default async function ResultPage({
   const typeContent = getTypeContent(result.type);
   const stageContent = getStageContent(result.stage);
   const resultUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/result/${id}`;
-  const rawBookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#";
-  const bookingUrl = rawBookingUrl !== "#"
-    ? `${rawBookingUrl}${rawBookingUrl.includes("?") ? "&" : "?"}utm_source=masterman&utm_medium=assessment&utm_campaign=stage-${result.stage}`
-    : "#";
+  const applyUrl = buildApplyUrl(`stage-${result.stage}`);
 
   return (
     <main className="min-h-dvh flex flex-col">
@@ -182,16 +180,16 @@ export default async function ResultPage({
                 Ready to understand what this means for your life?
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Book a free 30-minute clarity call with the Masterman team. We review your result together and talk about what is actually holding you back.
+                Apply to the Masterman program. We review your result together and talk about what is actually holding you back.
               </p>
               <a
-                href={bookingUrl}
+                href={applyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block pt-1"
               >
                 <Button size="lg" className="w-full sm:w-auto min-w-[12rem]">
-                  Book a Clarity Call
+                  Apply
                 </Button>
               </a>
             </CardContent>

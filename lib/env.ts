@@ -28,7 +28,7 @@ const REQUIRED: EnvKey[] = [
 const OPTIONAL_DESCRIBED: Record<string, string> = {
   OUTBOUND_WEBHOOK_LEAD_URL: "Outbound webhook for lead-captured events (n8n / Zapier)",
   OUTBOUND_WEBHOOK_RESULT_URL: "Outbound webhook for assessment-completed events (n8n / Zapier)",
-  NEXT_PUBLIC_BOOKING_URL: "Calendly or booking link shown on /thank-you",
+  NEXT_PUBLIC_APPLY_URL: "Apply page URL shown on /result and /thank-you (defaults to https://programs.mastermangroup.com)",
   CONVERTKIT_TAG_TYPE_AGSC: "ConvertKit tag for type AGSC (and other CONVERTKIT_TAG_TYPE_* vars)",
   CONVERTKIT_TAG_STAGE_1: "ConvertKit tag for stage 1 (and other CONVERTKIT_TAG_STAGE_* vars)",
 };

@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getCopy } from "@/lib/content";
+import { buildApplyUrl } from "@/lib/utils";
 
 interface ThankYouPageProps {
   searchParams: Promise<{ id?: string }>;
@@ -13,7 +14,7 @@ export default async function ThankYouPage({
 }: ThankYouPageProps) {
   const { id } = await searchParams;
   const copy = getCopy();
-  const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#";
+  const applyUrl = buildApplyUrl("thank-you");
 
   return (
     <main className="min-h-dvh flex flex-col justify-center py-10 sm:py-12">
@@ -44,13 +45,13 @@ export default async function ThankYouPage({
             ) : null}
 
             <a
-              href={bookingUrl}
+              href={applyUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="block pt-1"
             >
               <Button size="lg" className="w-full">
-                Book a Call
+                Apply
               </Button>
             </a>
           </CardContent>
