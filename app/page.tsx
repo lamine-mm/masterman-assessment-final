@@ -16,10 +16,10 @@ export default function LandingPage() {
           <MastermanLogo size={120} />
 
           <div className="space-y-6 sm:space-y-7 max-w-lg mx-auto">
-            {/* Scholar + therapist badge */}
+            {/* Scholar badge */}
             <div className="flex justify-center">
               <span className="inline-flex items-center gap-1.5 rounded-sm border border-ink-500 px-3 py-1 text-[11px] font-semibold tracking-[0.1em] uppercase text-muted-foreground">
-                Islamic scholar &amp; therapist approved
+                Reviewed by Shaykh Abdullah Oduro
               </span>
             </div>
 
@@ -45,9 +45,14 @@ export default function LandingPage() {
 
       <footer className="mt-auto pb-8 pt-4">
         <Container>
-          <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed text-center max-w-xl mx-auto">
-            {copy.disclaimer.long}
-          </p>
+          <div className="max-w-xl mx-auto text-center space-y-2">
+            <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">
+              Disclaimer
+            </p>
+            <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
+              {copy.disclaimer.long}
+            </p>
+          </div>
         </Container>
       </footer>
     </main>

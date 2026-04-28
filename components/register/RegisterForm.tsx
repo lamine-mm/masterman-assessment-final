@@ -110,39 +110,12 @@ const CALLING_CODES = [
   { code: "+994", label: "+994 Azerbaijan" },
 ];
 
-const COUNTRIES = [
-  // North America
-  "United States", "Canada", "Mexico",
-  // Western Europe
-  "United Kingdom", "France", "Germany", "Netherlands", "Belgium", "Switzerland",
-  "Austria", "Sweden", "Norway", "Denmark", "Finland", "Ireland", "Portugal",
-  "Spain", "Italy", "Greece",
-  // Eastern Europe
-  "Poland", "Ukraine", "Russia", "Romania", "Hungary", "Czech Republic",
-  // Oceania
-  "Australia", "New Zealand",
-  // Gulf / Middle East
-  "UAE", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman", "Jordan",
-  "Lebanon", "Palestine", "Iraq", "Syria", "Yemen", "Iran", "Turkey",
-  // Africa — North
-  "Egypt", "Morocco", "Algeria", "Tunisia", "Libya", "Sudan",
-  // Africa — West
-  "Nigeria", "Ghana", "Senegal", "Mali", "Burkina Faso", "Côte d'Ivoire",
-  "Guinea", "Gambia", "Niger",
-  // Africa — East
-  "Kenya", "Tanzania", "Uganda", "Ethiopia", "Somalia", "Djibouti",
-  // Africa — South
-  "South Africa",
-  // South Asia
-  "Pakistan", "Bangladesh", "India", "Sri Lanka", "Nepal", "Afghanistan",
-  // Southeast Asia
-  "Malaysia", "Indonesia", "Philippines", "Singapore", "Thailand",
-  "Vietnam", "Myanmar",
-  // East Asia
-  "China", "Japan", "South Korea", "Hong Kong", "Taiwan",
-  // Central Asia
-  "Kazakhstan", "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Azerbaijan",
-  "Other",
+const AGE_RANGES: { label: string; value: number }[] = [
+  { label: "18–24", value: 18 },
+  { label: "25–34", value: 25 },
+  { label: "35–44", value: 35 },
+  { label: "45–54", value: 45 },
+  { label: "55+",   value: 55 },
 ];
 
 const inputClass =
@@ -151,11 +124,16 @@ const inputClass =
 const selectClass =
   "w-full min-h-11 rounded-sm border border-ink-600 bg-ink-900 px-3.5 text-[15px] text-foreground focus:outline-none focus:border-ink-500 appearance-none transition-colors";
 
-export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
+export function RegisterForm({
+  copy,
+  disclaimer,
+}: {
+  copy: CopyContent["register"];
+  disclaimer: string;
+}) {
   const router = useRouter();
   const [name, setName]           = useState("");
   const [email, setEmail]         = useState("");
-  const [country, setCountry]     = useState("");
   const [callingCode, setCallingCode] = useState("+1");
   const [phoneDigits, setPhoneDigits] = useState("");
   const [age, setAge]             = useState("");
@@ -179,7 +157,6 @@ export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
         name,
         email,
         phone,
-        country: country || undefined,
         age: age ? parseInt(age, 10) : undefined,
         married: married === "yes" ? true : married === "no" ? false : undefined,
       }),
@@ -254,38 +231,23 @@ export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
                 />
               </div>
 
-              {/* Country */}
+              {/* Age range */}
               <div className="space-y-2">
-                <label htmlFor="country" className="text-label">Country</label>
+                <label htmlFor="age" className="text-label">Age range</label>
                 <div className="relative">
                   <select
-                    id="country"
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
+                    id="age"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
                     className={selectClass}
                   >
-                    <option value="">Select your country</option>
-                    {COUNTRIES.map((c) => (
-                      <option key={c} value={c}>{c}</option>
+                    <option value="">Select your age range</option>
+                    {AGE_RANGES.map((r) => (
+                      <option key={r.value} value={r.value}>{r.label}</option>
                     ))}
                   </select>
                   <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">▾</span>
                 </div>
-              </div>
-
-              {/* Age */}
-              <div className="space-y-2">
-                <label htmlFor="age" className="text-label">Age</label>
-                <input
-                  id="age"
-                  type="number"
-                  min={18}
-                  max={80}
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  placeholder="Your age"
-                  className={inputClass}
-                />
               </div>
 
               {/* Phone with country code */}
@@ -362,6 +324,15 @@ export function RegisterForm({ copy }: { copy: CopyContent["register"] }) {
             </form>
           </CardContent>
         </Card>
+
+        <div className="mt-6 space-y-2 text-center">
+          <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">
+            Disclaimer
+          </p>
+          <p className="text-[11px] text-muted-foreground leading-relaxed">
+            {disclaimer}
+          </p>
+        </div>
       </Container>
     </main>
   );

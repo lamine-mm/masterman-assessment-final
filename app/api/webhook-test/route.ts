@@ -24,7 +24,7 @@ const MOCK_PAYLOAD = {
   typeCode: "AGSC",
   typeName: "The Anchored Shepherd",
   stage: 3 as const,
-  stageName: "The Anchored",
+  stageName: "The Grounded",
   strength: "You lead from principle, not pressure.",
   blindSpot: "You can be so focused on your vision that you miss the people right next to you.",
   nextStep: "Build accountability with one brother who will tell you the truth.",

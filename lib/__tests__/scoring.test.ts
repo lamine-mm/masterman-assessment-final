@@ -5,7 +5,7 @@
  *   - All-Pole-A answers → type AGSC, stage 4, scores ~1.0
  *   - All-Pole-B answers → type DRPI, stage 1, scores ~0.0
  *   - All-neutral Likert → axis scores at 0.5
- *   - Scenario weight (2×) verified numerically
+ *   - Scenario weight (1×) verified numerically
  *   - Exact midpoint flags (score within 0.10 of 0.50)
  *   - Stage boundaries (25, 50, 75)
  *   - Mixed-pole type codes (e.g. AGPI, DRSC)
@@ -73,12 +73,12 @@ function buildAnswers(
 describe("scoreAssessment", () => {
   // ── Pole A sweep ────────────────────────────────────────────────────────────
 
-  it("all max pole-A answers → AGSC, stage 4, axisScores = 1.0, totalScore = 100", () => {
+  it("all max pole-A answers → AGSC, stage 4, axisScores ≈ 22/24, totalScore = 92", () => {
     // To maximise the A axis we must:
     //   A-dir Likert → value 5 (+2 raw)
     //   B-dir Likert → value 1 (LIKERT_MAP[1] = -2, ×-1 flip = +2 raw)
-    //   Scenario     → option 0 (strong A: score 2 × +1 × weight 2 = +4 raw)
-    // Per-axis raw max: 3×(+2) + 1×(+2) + (+4) = +12 → axisScore = 24/24 = 1.0
+    //   Scenario     → option 0 (strong A: score 2 × +1 × weight 1 = +2 raw)
+    // Per-axis raw max: 3×(+2) + 1×(+2) + (+2) = +10 → axisScore = 22/24 ≈ 0.917
     const answers = ALL_QUESTIONS.map((q) => {
       if (q.type === "scenario") return { questionId: q.id, value: 0 };
       return { questionId: q.id, value: q.scoringDirection === "A" ? 5 : 1 };
@@ -87,48 +87,29 @@ describe("scoreAssessment", () => {
 
     expect(result.type).toBe("AGSC");
     expect(result.stage).toBe(4);
-    expect(result.axisScores.A).toBeCloseTo(1.0);
-    expect(result.axisScores.G).toBeCloseTo(1.0);
-    expect(result.axisScores.S).toBeCloseTo(1.0);
-    expect(result.axisScores.C).toBeCloseTo(1.0);
-    expect(result.totalScore).toBe(100);
+    expect(result.axisScores.A).toBeCloseTo(22 / 24, 5);
+    expect(result.axisScores.G).toBeCloseTo(22 / 24, 5);
+    expect(result.axisScores.S).toBeCloseTo(22 / 24, 5);
+    expect(result.axisScores.C).toBeCloseTo(22 / 24, 5);
+    expect(result.totalScore).toBe(92);
     expect(result.midpointFlags).toHaveLength(0);
   });
 
   // ── Pole B sweep ────────────────────────────────────────────────────────────
 
-  it("all strongly agree toward pole B → DRPI, stage 1, scores ≈ 0.0", () => {
-    // Likert 1 = -2 (A-dir) → raw -2; B-dir: -(-2) = flipped, likert 1 = raw +2 (B wins here)
-    // Wait — let's be precise:
-    // A-dir question: likertMap[1] = -2, no flip → rawValue -2
-    // B-dir question: likertMap[1] = -2, flip → rawValue +2 (agrees with B = bad for A axis)
-    // Scenario opt 3 = strong B = score 2 × pole B → -2 × weight 2 = -4
-    // Per axis: 3×(-2) + 1×(+2) + (-4) = -6 + 2 - 4 = -8  ← not -12
-    // Actually wait: B-dir flip makes agreeing WITH B = negative for A axis.
-    // likert value 1 = strongly agree. B-dir question: "I am reactive"
-    // B-dir: rawValue = likertMap[1] × -1 = -2 × -1 = +2 (strongly agree reactive = bad for A = +2 toward B = -2 for A)
-    // Hmm, let me re-read scoring.ts...
-    // scoringDirection B: rawValue = LIKERT_MAP[value] * -1
-    // LIKERT_MAP[1] = -2 (strongly disagree in the normal scale) but wait...
-    // The likert values are 1-5 where 5 = strongly agree
-    // value=1 → "strongly disagree" = -2 in LIKERT_MAP
-    // For a B-dir question ("I feel reactive"), strongly disagree means you're NOT reactive = good for pole A
-    // So B-dir, value=1: rawValue = -2 * -1 = +2 (strongly disagree B = +2 toward A)
-    // For all-pole-B: we need value=5 on B-dir questions and value=1 on A-dir questions
-    // Scenario opt 3 = strong B
-
-    // All-pole-B answers:
+  it("all strongly agree toward pole B → DRPI, stage 1, scores ≈ 2/24", () => {
+    // A-dir question: likertMap[1] = -2, no flip → -2
+    // B-dir question: likertMap[5] = +2, flip → -2
+    // Scenario opt 3 = strong B = score 2 × pole B (-1) × weight 1 = -2
+    // Per axis: 3×(-2) + 1×(-2) + (-2) = -10 → axisScore = (-10+12)/24 = 2/24 ≈ 0.083
     const answers = ALL_QUESTIONS.map((q) => {
       if (q.type === "scenario") return { questionId: q.id, value: 3 }; // strong B
       if (q.type === "likert") {
-        // A-dir: value 1 → -2 (strongly disagree A = toward B)
-        // B-dir: value 5 → +2 flipped → -2 (strongly agree B = toward B)
         return {
           questionId: q.id,
           value: q.scoringDirection === "A" ? 1 : 5,
         };
       }
-      // unreachable — Question union is exhausted above
       const _never: never = q;
       return { questionId: (_never as unknown as { id: string }).id, value: 1 };
     });
@@ -136,11 +117,11 @@ describe("scoreAssessment", () => {
     const result = scoreAssessment(answers, ALL_QUESTIONS);
     expect(result.type).toBe("DRPI");
     expect(result.stage).toBe(1);
-    expect(result.axisScores.A).toBeCloseTo(0.0);
-    expect(result.axisScores.G).toBeCloseTo(0.0);
-    expect(result.axisScores.S).toBeCloseTo(0.0);
-    expect(result.axisScores.C).toBeCloseTo(0.0);
-    expect(result.totalScore).toBe(0);
+    expect(result.axisScores.A).toBeCloseTo(2 / 24, 5);
+    expect(result.axisScores.G).toBeCloseTo(2 / 24, 5);
+    expect(result.axisScores.S).toBeCloseTo(2 / 24, 5);
+    expect(result.axisScores.C).toBeCloseTo(2 / 24, 5);
+    expect(result.totalScore).toBe(8);
   });
 
   // ── Neutral Likert ──────────────────────────────────────────────────────────
@@ -173,7 +154,7 @@ describe("scoreAssessment", () => {
 
   // ── Scenario weight verification ────────────────────────────────────────────
 
-  it("scenario option 0 (strong A, score 2) contributes ±4 to axis raw", () => {
+  it("scenario option 0 (strong A, score 2) contributes ±2 to axis raw", () => {
     // Only Q: 1 scenario question for axis A
     const singleScenario: Question[] = [
       {
@@ -192,21 +173,21 @@ describe("scoreAssessment", () => {
       },
     ];
 
-    // Strong A: raw = 2 × +1 × 2 = +4; axisScore = (4+12)/24 = 16/24 ≈ 0.667
+    // Strong A: raw = 2 × +1 × 1 = +2; axisScore = (2+12)/24 = 14/24 ≈ 0.583
     const strongA = scoreAssessment([{ questionId: "S1", value: 0 }], singleScenario);
-    expect(strongA.axisScores.A).toBeCloseTo(16 / 24, 5);
+    expect(strongA.axisScores.A).toBeCloseTo(14 / 24, 5);
 
-    // Weak A: raw = 1 × +1 × 2 = +2; axisScore = (2+12)/24 = 14/24 ≈ 0.583
+    // Weak A: raw = 1 × +1 × 1 = +1; axisScore = (1+12)/24 = 13/24 ≈ 0.542
     const weakA = scoreAssessment([{ questionId: "S1", value: 1 }], singleScenario);
-    expect(weakA.axisScores.A).toBeCloseTo(14 / 24, 5);
+    expect(weakA.axisScores.A).toBeCloseTo(13 / 24, 5);
 
-    // Weak B: raw = 1 × -1 × 2 = -2; axisScore = (-2+12)/24 = 10/24 ≈ 0.417
+    // Weak B: raw = 1 × -1 × 1 = -1; axisScore = (-1+12)/24 = 11/24 ≈ 0.458
     const weakB = scoreAssessment([{ questionId: "S1", value: 2 }], singleScenario);
-    expect(weakB.axisScores.A).toBeCloseTo(10 / 24, 5);
+    expect(weakB.axisScores.A).toBeCloseTo(11 / 24, 5);
 
-    // Strong B: raw = 2 × -1 × 2 = -4; axisScore = (-4+12)/24 = 8/24 ≈ 0.333
+    // Strong B: raw = 2 × -1 × 1 = -2; axisScore = (-2+12)/24 = 10/24 ≈ 0.417
     const strongB = scoreAssessment([{ questionId: "S1", value: 3 }], singleScenario);
-    expect(strongB.axisScores.A).toBeCloseTo(8 / 24, 5);
+    expect(strongB.axisScores.A).toBeCloseTo(10 / 24, 5);
   });
 
   // ── Midpoint flags ──────────────────────────────────────────────────────────
@@ -255,28 +236,25 @@ describe("scoreAssessment", () => {
 
   // ── Stage boundaries ────────────────────────────────────────────────────────
 
-  it("totalScore 25 → stage 1 (The Drifter)", () => {
-    // Need totalScore exactly 25: totalRaw = round((25/100 * 96) - 48) = round(24 - 48) = -24
-    // This is harder to hit exactly via fixture; test via a direct numerical check using the
-    // known formula: totalScore = round((totalRaw + 48) / 96 * 100)
-    // We check the boundary condition by building answers that produce known totalScore
-    // Easiest: all-neutral (totalScore 50) then check stage 2
-    const neutralAnswers = buildAnswers(ALL_QUESTIONS, 3, 1); // neutral + weak A scenario
+  it("neutral Likert + weak-A scenario → stage 2", () => {
+    // Per axis raw: 0+0+0+0 + (1×+1×1) = +1; total raw = 4
+    // totalScore = (4+48)/96 × 100 ≈ 54 → stage 2 (≤ threshold 55)
+    const neutralAnswers = buildAnswers(ALL_QUESTIONS, 3, 1);
     const result = scoreAssessment(neutralAnswers, ALL_QUESTIONS);
-    expect(result.stage).toBe(3); // totalScore ~58 → stage 3
+    expect(result.stage).toBe(2);
   });
 
-  it("totalScore 0 → stage 1", () => {
+  it("all pole-B → stage 1, totalScore = 8", () => {
     const answers = ALL_QUESTIONS.map((q) => ({
       questionId: q.id,
       value: q.type === "scenario" ? 3 : q.scoringDirection === "A" ? 1 : 5,
     }));
     const result = scoreAssessment(answers, ALL_QUESTIONS);
     expect(result.stage).toBe(1);
-    expect(result.totalScore).toBe(0);
+    expect(result.totalScore).toBe(8);
   });
 
-  it("totalScore 100 → stage 4", () => {
+  it("all pole-A → stage 4, totalScore = 92", () => {
     // Correct max-A answers: A-dir Likert=5, B-dir Likert=1, scenario opt 0
     const answers = ALL_QUESTIONS.map((q) => {
       if (q.type === "scenario") return { questionId: q.id, value: 0 };
@@ -284,7 +262,7 @@ describe("scoreAssessment", () => {
     });
     const result = scoreAssessment(answers, ALL_QUESTIONS);
     expect(result.stage).toBe(4);
-    expect(result.totalScore).toBe(100);
+    expect(result.totalScore).toBe(92);
   });
 
   // ── Type code derivation ────────────────────────────────────────────────────

@@ -1,5 +1,5 @@
 {
-  "_comment": "Opening angles for sales/coaching calls. One entry per type code. stageEarly = stages 1-2 (The Drifter / The Builder). stageLate = stages 3-4 (The Anchored / The Shepherd). closeCallSuffix appended when midpointFlags exist — {AXES} replaced with axis names at runtime.",
+  "_comment": "Opening angles for sales/coaching calls. One entry per type code. stageEarly = stages 1-2 (The Drifter / The Builder). stageLate = stages 3-4 (The Grounded / The Shepherd). closeCallSuffix appended when midpointFlags exist — {AXES} replaced with axis names at runtime.",
   "angles": {
     "AGSC": {
       "stageEarly": "{name}, your result shows a man who has the pattern right but not yet the consistency. You know what you should be — the hard part is doing it day after day without someone holding you to it. That is what this conversation is about.",
