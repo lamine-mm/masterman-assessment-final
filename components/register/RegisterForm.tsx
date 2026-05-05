@@ -16,8 +16,10 @@ const AGE_RANGES: { label: string; value: number }[] = [
   { label: "55+",   value: 55 },
 ];
 
-const inputClass =
-  "w-full min-h-11 rounded-sm border border-ink-600 bg-ink-900 px-3.5 text-[15px] text-foreground placeholder:text-parchment-500 focus:outline-none focus:border-ink-500 focus:shadow-[inset_0_0_0_1px_#4A4438] transition-colors";
+const inputBase =
+  "min-h-11 rounded-sm border border-ink-600 bg-ink-900 px-3.5 text-[15px] text-foreground placeholder:text-parchment-500 focus:outline-none focus:border-ink-500 focus:shadow-[inset_0_0_0_1px_#4A4438] transition-colors";
+
+const inputClass = `w-full ${inputBase}`;
 
 const selectClass =
   "w-full min-h-11 rounded-sm border border-ink-600 bg-ink-900 px-3.5 text-[15px] text-foreground focus:outline-none focus:border-ink-500 appearance-none transition-colors";
@@ -174,7 +176,7 @@ export function RegisterForm({
                     onChange={(e) => setCallingCode(e.target.value)}
                     placeholder="+1"
                     required
-                    className={inputClass + " w-20 flex-shrink-0 text-center"}
+                    className={`${inputBase} w-20 flex-shrink-0 text-center`}
                   />
                   <input
                     id="phone"
@@ -184,7 +186,7 @@ export function RegisterForm({
                     onChange={(e) => setPhoneDigits(e.target.value)}
                     placeholder="555 000 0000"
                     required
-                    className={inputClass + " flex-1"}
+                    className={`${inputBase} flex-1 min-w-0`}
                   />
                 </div>
               </div>
