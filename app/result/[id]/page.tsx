@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { getResultById } from "@/lib/db";
 import { getTypeContent, getStageContent, getCopy } from "@/lib/content";
 import { AXIS_LABELS, AXIS_POLE_A, AXIS_POLE_B, type AxisKey } from "@/lib/types";
-import { buildApplyUrl } from "@/lib/utils";
 
 // AXES used for the type code legend only
 
@@ -31,7 +30,6 @@ export default async function ResultPage({
   const typeContent = getTypeContent(result.type);
   const stageContent = getStageContent(result.stage);
   const resultUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/result/${id}`;
-  const applyUrl = buildApplyUrl(`stage-${result.stage}`);
 
   return (
     <main className="min-h-dvh flex flex-col">
@@ -173,25 +171,12 @@ export default async function ResultPage({
             />
           </div>
 
-          {/* ── CTA ─────────────────────────────────────────────────────── */}
+          {/* ── Next steps ──────────────────────────────────────────────── */}
           <Card variant="anchor">
-            <CardContent className="pt-6 pb-6 px-5 sm:px-6 text-center space-y-3">
+            <CardContent className="pt-6 pb-6 px-5 sm:px-6 text-center">
               <p className="font-display text-[22px] sm:text-[24px] text-foreground leading-snug tracking-[-0.015em]">
-                Ready to understand what this means for your life?
+                The Masterman team will reach out to you in a few moments to discuss your results.
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Apply to the Masterman program. We review your result together and talk about what is actually holding you back.
-              </p>
-              <a
-                href={applyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block pt-1"
-              >
-                <Button size="lg" className="w-full sm:w-auto min-w-[12rem]">
-                  Apply
-                </Button>
-              </a>
             </CardContent>
           </Card>
 

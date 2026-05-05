@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getCopy } from "@/lib/content";
-import { buildApplyUrl } from "@/lib/utils";
 
 interface ThankYouPageProps {
   searchParams: Promise<{ id?: string }>;
@@ -14,7 +12,6 @@ export default async function ThankYouPage({
 }: ThankYouPageProps) {
   const { id } = await searchParams;
   const copy = getCopy();
-  const applyUrl = buildApplyUrl("thank-you");
 
   return (
     <main className="min-h-dvh flex flex-col justify-center py-10 sm:py-12">
@@ -33,27 +30,10 @@ export default async function ThankYouPage({
         </p>
 
         <Card>
-          <CardContent className="pt-6 pb-6 px-5 sm:px-6 space-y-5 text-left">
-            {copy.thankYou.callBullets.length > 0 ? (
-              <ul className="text-sm text-muted-foreground list-disc pl-5 space-y-2 marker:text-primary/80">
-                {copy.thankYou.callBullets.map((bullet, i) => (
-                  <li key={i} className="leading-relaxed pl-1">
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
-            <a
-              href={applyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block pt-1"
-            >
-              <Button size="lg" className="w-full">
-                Apply
-              </Button>
-            </a>
+          <CardContent className="pt-6 pb-6 px-5 sm:px-6 text-center">
+            <p className="font-display text-[20px] sm:text-[22px] text-foreground leading-snug tracking-[-0.015em]">
+              The Masterman team will reach out to you in a few moments to discuss your results.
+            </p>
           </CardContent>
         </Card>
 
