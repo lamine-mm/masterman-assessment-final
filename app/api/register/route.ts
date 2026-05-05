@@ -15,9 +15,9 @@ import { fireLeadCaptured } from "@/lib/webhooks";
 const BodySchema = z.object({
   name:    z.string().min(1, "Name is required"),
   email:   z.string().email("Valid email required"),
-  phone:   z.string().optional(),
+  phone:   z.string().min(1, "Phone number is required"),
   country: z.string().optional(),
-  age:     z.number().int().min(10).max(120).optional(),
+  age:     z.number().int().min(10).max(120),
   married: z.boolean().optional(),
 });
 
