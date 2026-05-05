@@ -1,32 +1,52 @@
 /**
  * Scoring engine — pure functions, no side effects, no I/O.
- * Input: 20 answers + questions + config
+ *
+ * Inputs: array of Answer + array of Question + scoring config
  * Output: AssessmentResult
+ *
+ * Per-axis raw min/max are derived from the questions array at runtime,
+ * so the engine produces correct outputs for any question count or
+ * per-module distribution. No hardcoded counts or IDs.
  */
 
 import type { Answer, AssessmentResult, AxisKey, Question } from "./types";
 import scoringConfig from "@/config/scoring.json";
 
-// Likert value map: UI value (1–5) → raw score
 const LIKERT_MAP: Record<number, number> = {
-  1: scoringConfig.likertValues.stronglyDisagree, // -2
-  2: scoringConfig.likertValues.disagree,          // -1
-  3: scoringConfig.likertValues.neutral,            //  0
-  4: scoringConfig.likertValues.agree,              // +1
-  5: scoringConfig.likertValues.stronglyAgree,      // +2
+  1: scoringConfig.likertValues.stronglyDisagree,
+  2: scoringConfig.likertValues.disagree,
+  3: scoringConfig.likertValues.neutral,
+  4: scoringConfig.likertValues.agree,
+  5: scoringConfig.likertValues.stronglyAgree,
 };
 
-const SCENARIO_WEIGHT = scoringConfig.scenarioWeight;          // 2
-const AXIS_RAW_MIN   = scoringConfig.axisRawMin;               // -12
-const AXIS_RAW_MAX   = scoringConfig.axisRawMax;               // +12
-const STAGE_THRESHOLDS = scoringConfig.stageThresholds;        // [25, 50, 75]
-const MIDPOINT_SENSITIVITY = scoringConfig.midpointSensitivity; // 0.10
+const SCENARIO_WEIGHT = scoringConfig.scenarioWeight;
+const STAGE_THRESHOLDS = scoringConfig.stageThresholds;
+const MIDPOINT_SENSITIVITY = scoringConfig.midpointSensitivity;
+const MAX_LIKERT = scoringConfig.likertValues.stronglyAgree;
 
 const AXES: AxisKey[] = ["A", "G", "S", "C"];
 
-// Which letter wins each axis pole
 const POLE_A_LETTER: Record<AxisKey, string> = { A: "A", G: "G", S: "S", C: "C" };
 const POLE_B_LETTER: Record<AxisKey, string> = { A: "D", G: "R", S: "P", C: "I" };
+
+/**
+ * For a given axis, compute the maximum possible signed raw score
+ * given the questions on that axis. Min is the negation.
+ */
+function axisRawMaxFor(axis: AxisKey, questions: Question[]): number {
+  let max = 0;
+  for (const q of questions) {
+    if (q.axis !== axis) continue;
+    if (q.type === "likert") {
+      max += MAX_LIKERT;
+    } else {
+      const optionMax = Math.max(...q.options.map((o) => o.score));
+      max += optionMax * SCENARIO_WEIGHT;
+    }
+  }
+  return max;
+}
 
 export function scoreAssessment(
   answers: Answer[],
@@ -43,7 +63,7 @@ export function scoreAssessment(
     if (question.type === "likert") {
       let raw = LIKERT_MAP[answer.value] ?? 0;
       if (question.scoringDirection === "B") raw = -raw;
-      axisRaw[axis] += raw; // weight = 1 for Likert
+      axisRaw[axis] += raw;
     }
 
     if (question.type === "scenario") {
@@ -54,13 +74,21 @@ export function scoreAssessment(
     }
   }
 
-  // Normalize each axis to 0–1
-  const range = AXIS_RAW_MAX - AXIS_RAW_MIN; // 24
+  // Per-axis raw bounds derived from the question set
+  const axisMax: Record<AxisKey, number> = {
+    A: axisRawMaxFor("A", questions),
+    G: axisRawMaxFor("G", questions),
+    S: axisRawMaxFor("S", questions),
+    C: axisRawMaxFor("C", questions),
+  };
+
+  // Each axis normalized to 0–1 (>0.5 = Pole A)
   const axisScores = Object.fromEntries(
-    AXES.map((axis) => [
-      axis,
-      (axisRaw[axis] - AXIS_RAW_MIN) / range,
-    ])
+    AXES.map((axis) => {
+      const max = axisMax[axis];
+      const score = max === 0 ? 0.5 : (axisRaw[axis] + max) / (2 * max);
+      return [axis, score];
+    })
   ) as Record<AxisKey, number>;
 
   // Build 4-letter type code
@@ -68,11 +96,13 @@ export function scoreAssessment(
     axisScores[axis] > 0.5 ? POLE_A_LETTER[axis] : POLE_B_LETTER[axis]
   ).join("");
 
-  // Total score normalized to 0–100
+  // Total score normalized to 0–100 across all axes
   const totalRaw = AXES.reduce((sum, axis) => sum + axisRaw[axis], 0);
-  const totalMin = AXIS_RAW_MIN * 4; // -48
-  const totalMax = AXIS_RAW_MAX * 4; // +48
-  const totalScore = Math.round(((totalRaw - totalMin) / (totalMax - totalMin)) * 100);
+  const totalMax = AXES.reduce((sum, axis) => sum + axisMax[axis], 0);
+  const totalScore =
+    totalMax === 0
+      ? 50
+      : Math.round(((totalRaw + totalMax) / (2 * totalMax)) * 100);
 
   // Stage lookup
   let stage: 1 | 2 | 3 | 4;

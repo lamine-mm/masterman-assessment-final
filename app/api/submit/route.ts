@@ -1,6 +1,6 @@
 /**
  * POST /api/submit
- * Scores 20 answers, persists result, fires ConvertKit automation.
+ * Scores the user's answers, persists result, fires ConvertKit automation.
  * Returns { resultId } — client redirects to /result/:resultId.
  */
 
@@ -19,7 +19,7 @@ const AnswerSchema = z.object({
 });
 
 const BodySchema = z.object({
-  answers: z.array(AnswerSchema).min(20).max(20),
+  answers: z.array(AnswerSchema).min(1),
   married: z.boolean(),
 });
 
@@ -54,6 +54,12 @@ export async function POST(request: Request) {
 
   // 3. Load questions and score
   const questions = getQuestions();
+  if (answers.length !== questions.length) {
+    return NextResponse.json(
+      { error: `Expected ${questions.length} answers, received ${answers.length}.` },
+      { status: 422 }
+    );
+  }
   const result = scoreAssessment(answers, questions);
 
   // 4. Persist result

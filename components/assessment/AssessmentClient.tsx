@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useLayoutEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ProgressBar } from "@/components/assessment/ProgressBar";
 import { LikertQuestion } from "@/components/assessment/LikertQuestion";
 import { ScenarioQuestion } from "@/components/assessment/ScenarioQuestion";
@@ -11,8 +11,8 @@ import { Container } from "@/components/layout/Container";
 import type { Answer, Question } from "@/lib/types";
 
 const MODULE_LABELS = ["Identity", "Nafs", "Marriage", "Brotherhood"];
-const TOTAL_PAGES = 4;
-const QUESTIONS_PER_PAGE = 5;
+const MODULE_ORDER = ["identity", "nafs", "marriage", "brotherhood"] as const;
+const TOTAL_PAGES = MODULE_ORDER.length;
 
 export interface AssessmentClientProps {
   questions: Question[];
@@ -35,11 +35,8 @@ export function AssessmentClient({
   const isFirstPagePaint = useRef(true);
   const prefersReducedMotion = useReducedMotion();
 
-  const pageStart = currentPage * QUESTIONS_PER_PAGE;
-  const pageQuestions = questions.slice(
-    pageStart,
-    pageStart + QUESTIONS_PER_PAGE
-  );
+  const currentModule = MODULE_ORDER[currentPage];
+  const pageQuestions = questions.filter((q) => q.module === currentModule);
 
   const handleAnswer = useCallback((questionId: string, value: number) => {
     setAnswers((prev) => ({ ...prev, [questionId]: value }));
@@ -113,24 +110,26 @@ export function AssessmentClient({
       </div>
 
       <Container className="flex-1 max-w-2xl py-6 sm:py-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentPage}
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-8 sm:space-y-10"
-          >
+        <motion.div
+          key={`page-${currentPage}`}
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-8 sm:space-y-10"
+        >
             {pageQuestions.map((question) => {
               const currentValue = answers[question.id] ?? null;
 
               if (question.type === "scenario") {
+                const scenarioText =
+                  isMarriageModule && !married && question.textHypothetical
+                    ? question.textHypothetical
+                    : question.text;
                 return (
                   <ScenarioQuestion
                     key={question.id}
                     id={question.id}
-                    text={question.text}
+                    text={scenarioText}
                     options={question.options}
                     value={currentValue}
                     onChange={(v) => handleAnswer(question.id, v)}
@@ -154,8 +153,7 @@ export function AssessmentClient({
                 />
               );
             })}
-          </motion.div>
-        </AnimatePresence>
+        </motion.div>
 
         {error && (
           <p className="text-sm text-destructive text-center mt-6" role="alert">

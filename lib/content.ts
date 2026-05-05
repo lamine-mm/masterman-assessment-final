@@ -37,7 +37,8 @@ const ScenarioQuestionSchema = z.object({
   axis: z.enum(["A", "G", "S", "C"]),
   type: z.literal("scenario"),
   text: z.string().min(1),
-  weight: z.literal(2),
+  textHypothetical: z.string().optional(),
+  weight: z.union([z.literal(1), z.literal(2)]),
   options: z.array(ScenarioOptionSchema).length(4),
 });
 
@@ -128,7 +129,12 @@ const StageRoadmapsFileSchema = z.object({
 const CopyFileSchema = z.object({
   landing: z.object({ hero: z.string(), subhero: z.string(), cta: z.string() }),
   register: z.object({ title: z.string(), body: z.string(), cta: z.string() }),
-  intro: z.object({ title: z.string(), body: z.string(), cta: z.string() }),
+  intro: z.object({
+    title: z.string(),
+    body: z.string(),
+    cta: z.string(),
+    timeExpectation: z.string().optional(),
+  }),
   thankYou: z.object({
     title: z.string(),
     body: z.string(),
@@ -138,6 +144,20 @@ const CopyFileSchema = z.object({
   disclaimer: z.object({ short: z.string(), long: z.string() }),
   share: z.object({ whatsappMessage: z.string(), copyLinkMessage: z.string() }),
   loading: z.object({ scoringMessage: z.string() }),
+  postResult: z
+    .object({
+      accuracyQuestion: z.object({
+        prompt: z.string(),
+        scaleMin: z.number(),
+        scaleMax: z.number(),
+        scaleMinLabel: z.string(),
+        scaleMaxLabel: z.string(),
+        submitButton: z.string(),
+        skipButton: z.string(),
+        thanksMessage: z.string(),
+      }),
+    })
+    .optional(),
 });
 
 // ─── Parse and export ────────────────────────────────────────────────────────

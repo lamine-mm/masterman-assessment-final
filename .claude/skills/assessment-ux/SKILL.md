@@ -34,9 +34,8 @@ Study this flow — it's the gold standard for this format. Specifically:
 - Result page radial visual sized so it fits above the fold on a standard phone
 
 ## Pagination logic
-- 20 questions ÷ 4 questions per page = 5 pages
-- OR 20 questions ÷ 5 questions per page = 4 pages
-- Recommend 5 pages (one page per module + one scenario page), because it maps to the mental model of "4 areas of your life"
+- 25 questions paginated by module: Module 1 (7), Module 2 (6), Module 3 (6), Module 4 (6) = 4 pages
+- One page per module maps cleanly to the mental model of "4 areas of your life"
 - Back button allowed (editing answers is fine)
 - Forward button disabled until all visible questions answered
 

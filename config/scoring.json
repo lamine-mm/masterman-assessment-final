@@ -7,8 +7,6 @@
     "stronglyDisagree": -2
   },
   "scenarioWeight": 1,
-  "axisRawMin": -12,
-  "axisRawMax": 12,
-  "stageThresholds": [30, 55, 78],
+  "stageThresholds": [25, 50, 75],
   "midpointSensitivity": 0.10
 }

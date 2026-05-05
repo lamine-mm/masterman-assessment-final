@@ -45,7 +45,7 @@ Shaykh Abdullah Oduro's voice — imam-as-older-brother. Direct. Warm. Grounded 
 **Good:** *"You are the Anchored Shepherd. Your house runs toward you, not away from you."*
 
 **Bad:** *"Click here to begin your transformation journey."*
-**Good:** *"Take 4 minutes. Answer honestly. See where you are."*
+**Good:** *"Take 5 minutes. Answer honestly. See where you are."*
 
 ## Question writing
 - Direct second person: "I know why Allah put me on this earth." Not "The user understands their purpose."

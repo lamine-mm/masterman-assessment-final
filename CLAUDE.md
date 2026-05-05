@@ -1,7 +1,7 @@
 # Masterman Assessment v2 — Project Context
 
 ## One-line purpose
-A 4-minute, therapist- and scholar-verified mirror that shows a Muslim professional his type and his stage — so he trusts us enough to have the next conversation.
+A 5-minute, therapist- and scholar-reviewed mirror that shows a Muslim professional his type and his stage — so he trusts us enough to have the next conversation.
 
 ## What we're building
 A lead-magnet assessment app. Not a quiz. A diagnostic. The output earns the right to the next conversation (email opt-in → strategy call). We are NOT trying to close the cohort sale on the result page.
@@ -36,15 +36,15 @@ Type code = 4 letters, e.g. `AGSC` = "The Anchored Shepherd". 16 total types.
 4. **The Shepherd** — living it, other men look to him
 
 ## Question structure
-- **20 questions total**, 5 per module
-- Per module: 4 Likert (5-point) + 1 scenario (4 options, 2x weight)
-- Target completion time: 3.5–4 minutes
+- **25 questions total** — Module 1 has 7 (6 Likert + 1 scenario); Modules 2–4 have 6 each (5 Likert + 1 scenario)
+- Likert is 5-point. Scenario has 4 options, weight 1 (engine multiplier set in `config/scoring.json`)
+- Target completion time: 5 minutes
 - Paginated: 4–5 questions per page + progress bar
 - Module 3 has a "Are you currently married?" toggle at the start — if no, Likert questions auto-rephrase to hypothetical future tense ("When I marry, I will…")
 
 ## Scoring engine
 
-**Input:** array of 20 answers
+**Input:** array of 25 answers
 **Output:**
 ```ts
 type AssessmentResult = {
@@ -87,7 +87,7 @@ type AssessmentResult = {
 - Disclaimer P.S.
 
 ## Content files (single source of truth)
-- `content/questions.json` — 20 questions with scoring keys
+- `content/questions.json` — 25 questions with scoring keys
 - `content/types.json` — 16 type write-ups
 - `content/stages.json` — 4 stage definitions
 - `content/copy.json` — landing, CTAs, email templates, disclaimer (short + long)

@@ -1,8 +1,8 @@
 {
   "landing": {
     "hero": "Find out where you actually stand as a Muslim man.",
-    "subhero": "A 4-minute diagnostic across identity, self-discipline, marriage, and brotherhood. No fluff. Just an honest mirror.",
-    "cta": "Take 4 minutes. Answer honestly."
+    "subhero": "A 5-minute diagnostic across identity, self-discipline, marriage, and brotherhood. No fluff. Just an honest mirror.",
+    "cta": "Take 5 minutes. Answer honestly."
   },
   "register": {
     "title": "Before we begin",
@@ -11,8 +11,9 @@
   },
   "intro": {
     "title": "This is not a personality test.",
-    "body": "It is a diagnostic. It will show you where you actually stand — not where you tell people you stand. Answer every question as if no one will see your answers. That is the only way this works.",
-    "cta": "Begin"
+    "body": "Before you begin: answer based on the habits and patterns you have right now — not who you want to be, not who you used to be. The test only works if you are honest with yourself.",
+    "cta": "Begin",
+    "timeExpectation": "5 minutes. 25 questions."
   },
   "thankYou": {
     "title": "You showed up. That matters.",
@@ -27,13 +28,25 @@
   },
   "disclaimer": {
     "short": "This assessment is a personal reflection tool, not a clinical diagnosis. It is not a substitute for professional mental health, marital, or religious counseling.",
-    "long": "The Masterman Assessment is an educational and self-reflection tool grounded in Islamic values and principles of character development. It is not a clinical assessment, psychological diagnosis, or substitute for professional mental health, marital, or religious counseling. Results reflect patterns in your answers and are meant to prompt honest reflection — not to label or define you permanently. Your type and stage can and do change as you grow. If you are facing a mental health crisis or serious family situation, please seek qualified professional support."
+    "long": "The Masterman Assessment is an educational and self-reflection tool grounded in Islamic values and principles of character development. It is not a clinical assessment, psychological diagnosis, or substitute for professional mental health, marital, or religious counseling. Results reflect patterns in your answers and are meant to prompt honest reflection — not to label or define you permanently. Your type and stage can and do change as you grow. Like any self-report tool, the accuracy of the result depends on how honestly you answer. If you are facing a mental health crisis or serious family situation, please seek qualified professional support."
   },
   "share": {
-    "whatsappMessage": "I just took the Masterman Assessment. My type is {TYPE_CODE} — {TYPE_NAME}. Four minutes, honest answers. Take yours: {RESULT_URL}",
+    "whatsappMessage": "I just took the Masterman Assessment. My type is {TYPE_CODE} — {TYPE_NAME}. Five minutes, honest answers. Take yours: {RESULT_URL}",
     "copyLinkMessage": "Link copied!"
   },
   "loading": {
     "scoringMessage": "Reading your answers…"
+  },
+  "postResult": {
+    "accuracyQuestion": {
+      "prompt": "How accurately does this describe you right now?",
+      "scaleMin": 1,
+      "scaleMax": 5,
+      "scaleMinLabel": "Not at all",
+      "scaleMaxLabel": "Exactly right",
+      "submitButton": "Submit",
+      "skipButton": "Skip",
+      "thanksMessage": "Jazak Allah khayr — your feedback helps us improve the test."
+    }
   }
 }

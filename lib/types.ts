@@ -51,7 +51,8 @@ export interface ScenarioQuestion {
   axis: AxisKey;
   type: "scenario";
   text: string;
-  weight: 2;
+  textHypothetical?: string;
+  weight: 1 | 2;
   options: ScenarioOption[];
 }
 
@@ -107,11 +108,23 @@ export interface StageContent {
 export interface CopyContent {
   landing: { hero: string; subhero: string; cta: string };
   register: { title: string; body: string; cta: string };
-  intro: { title: string; body: string; cta: string };
+  intro: { title: string; body: string; cta: string; timeExpectation?: string };
   thankYou: { title: string; body: string; cta: string; callBullets: string[] };
   disclaimer: { short: string; long: string };
   share: { whatsappMessage: string; copyLinkMessage: string };
   loading: { scoringMessage: string };
+  postResult?: {
+    accuracyQuestion: {
+      prompt: string;
+      scaleMin: number;
+      scaleMax: number;
+      scaleMinLabel: string;
+      scaleMaxLabel: string;
+      submitButton: string;
+      skipButton: string;
+      thanksMessage: string;
+    };
+  };
 }
 
 // ─── Lead ────────────────────────────────────────────────────────────────────

@@ -1,5 +1,5 @@
 {
-  "_comment": "Masterman Assessment v2 — 20 approved questions. 4 modules × (4 Likert + 1 Scenario). Do NOT edit question IDs, axis, module, type, weight, or scoringDirection without updating lib/scoring.ts. Text edits only need JSON changes.",
+  "_comment": "Masterman Assessment v2.2 — 25 reviewer-approved questions. 5 minutes. IDs preserved from v2.0/v2.1 review docs for traceability (do not renumber). Module 1 has 7 questions, Modules 2–4 have 6 each. Do NOT edit question IDs, axis, module, type, or scoringDirection without updating lib/scoring.ts.",
   "questions": [
     {
       "id": "Q1",
@@ -29,12 +29,30 @@
       "weight": 1
     },
     {
-      "id": "Q4",
+      "id": "Q23",
       "module": "identity",
       "axis": "A",
       "type": "likert",
-      "text": "I often feel I am playing a role I did not choose.",
+      "text": "If my closest friend described my life in one sentence, it would sound like a man without direction.",
       "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q24",
+      "module": "identity",
+      "axis": "A",
+      "type": "likert",
+      "text": "I find myself changing how I act depending on who I am around.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q25",
+      "module": "identity",
+      "axis": "A",
+      "type": "likert",
+      "text": "In the last 30 days, I have made at least one decision that cost me something because it was the right thing to do.",
+      "scoringDirection": "A",
       "weight": 1
     },
     {
@@ -43,12 +61,12 @@
       "axis": "A",
       "type": "scenario",
       "text": "Your boss or business partner asks you to do something that crosses an Islamic line. Nothing illegal — just wrong. What do you actually do?",
-      "weight": 2,
+      "weight": 1,
       "options": [
-        { "label": "Push back respectfully and refuse, even if it costs me.", "score": 1, "pole": "A" },
-        { "label": "Do it this once and tell myself I'll fix it later.", "score": 2, "pole": "B" },
+        { "label": "Refuse and explain my reasoning openly.", "score": 2, "pole": "A" },
+        { "label": "Push back respectfully and refuse, even if it costs me.", "score": 2, "pole": "A" },
         { "label": "Find a workaround so I don't have to choose.", "score": 1, "pole": "B" },
-        { "label": "Refuse and explain my reasoning openly.", "score": 2, "pole": "A" }
+        { "label": "Do it this once and tell myself I'll fix it later.", "score": 2, "pole": "B" }
       ]
     },
     {
@@ -61,30 +79,39 @@
       "weight": 1
     },
     {
-      "id": "Q7",
-      "module": "nafs",
-      "axis": "G",
-      "type": "likert",
-      "text": "I keep promises I make to myself, even small ones.",
-      "scoringDirection": "A",
-      "weight": 1
-    },
-    {
       "id": "Q8",
       "module": "nafs",
       "axis": "G",
       "type": "likert",
-      "text": "My desires control more of my day than I control of them.",
+      "text": "My phone controls more of my day than I control of it.",
       "scoringDirection": "B",
       "weight": 1
     },
     {
-      "id": "Q9",
+      "id": "Q26",
       "module": "nafs",
       "axis": "G",
       "type": "likert",
-      "text": "I do muhasaba (self-accounting) on most days.",
+      "text": "In the last 7 days, I broke a small promise I made to myself.",
+      "scoringDirection": "B",
+      "weight": 1
+    },
+    {
+      "id": "Q28",
+      "module": "nafs",
+      "axis": "G",
+      "type": "likert",
+      "text": "When I am alone and no one is watching, I am mostly the same man I am in public.",
       "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q30",
+      "module": "nafs",
+      "axis": "G",
+      "type": "likert",
+      "text": "In the last week, I lost my temper in a way I later regretted.",
+      "scoringDirection": "B",
       "weight": 1
     },
     {
@@ -93,7 +120,7 @@
       "axis": "G",
       "type": "scenario",
       "text": "It is 11pm. You are tired. You told yourself you would pray Isha and sleep. Your phone is in your hand. What actually happens most nights?",
-      "weight": 2,
+      "weight": 1,
       "options": [
         { "label": "I put the phone down, pray, and sleep.", "score": 2, "pole": "A" },
         { "label": "I scroll for 10 minutes, then pray and sleep.", "score": 1, "pole": "A" },
@@ -107,7 +134,7 @@
       "axis": "S",
       "type": "likert",
       "text": "My wife knows I will lead the household even when it is hard.",
-      "textHypothetical": "When things get hard, I take the lead instead of waiting for someone else to step up.",
+      "textHypothetical": "When I marry, my wife will know I will lead the household even when it is hard.",
       "scoringDirection": "A",
       "weight": 1
     },
@@ -117,27 +144,37 @@
       "axis": "S",
       "type": "likert",
       "text": "I avoid hard conversations with my wife and hope they pass.",
-      "textHypothetical": "I tend to avoid hard conversations and hope they pass on their own.",
+      "textHypothetical": "When I marry, I expect I will avoid hard conversations with my wife and hope they pass.",
       "scoringDirection": "B",
       "weight": 1
     },
     {
-      "id": "Q13",
+      "id": "Q31",
       "module": "marriage",
       "axis": "S",
       "type": "likert",
-      "text": "My children see me pray more often than they see me on my phone.",
-      "textHypothetical": "The people closest to me see me pray more often than they see me on my phone.",
+      "text": "My wife would say I listen to her without trying to fix, defend, or dismiss.",
+      "textHypothetical": "When I marry, my wife will say I listen without trying to fix, defend, or dismiss.",
       "scoringDirection": "A",
       "weight": 1
     },
     {
-      "id": "Q14",
+      "id": "Q32",
       "module": "marriage",
       "axis": "S",
       "type": "likert",
-      "text": "When something is wrong at home, I usually wait for my wife to bring it up.",
-      "textHypothetical": "When something feels off, I usually wait for others to bring it up first.",
+      "text": "In the last 30 days, I initiated a conversation about something important at home that I was avoiding.",
+      "textHypothetical": "When I marry, I will initiate the hard conversations at home, even when I want to avoid them.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
+      "id": "Q34",
+      "module": "marriage",
+      "axis": "S",
+      "type": "likert",
+      "text": "When I come home stressed, my family feels it before I say anything.",
+      "textHypothetical": "When I marry, my family will feel my stress before I say anything.",
       "scoringDirection": "B",
       "weight": 1
     },
@@ -147,12 +184,13 @@
       "axis": "S",
       "type": "scenario",
       "text": "Your wife tells you she is unhappy with how things are at home. You do not fully agree. What do you do?",
-      "weight": 2,
+      "textHypothetical": "Imagine your wife tells you she is unhappy with how things are at home. You do not fully agree. What would you do?",
+      "weight": 1,
       "options": [
         { "label": "Listen fully, ask questions, then lead a real conversation.", "score": 2, "pole": "A" },
+        { "label": "Listen, take a day to reflect, and come back with a plan.", "score": 1, "pole": "A" },
         { "label": "Listen, get defensive, and try to explain my side.", "score": 1, "pole": "B" },
-        { "label": "Agree to keep the peace and change nothing.", "score": 2, "pole": "B" },
-        { "label": "Listen, take a day to reflect, and come back with a plan.", "score": 1, "pole": "A" }
+        { "label": "Agree to keep the peace and change nothing.", "score": 2, "pole": "B" }
       ]
     },
     {
@@ -192,12 +230,21 @@
       "weight": 1
     },
     {
+      "id": "Q36",
+      "module": "brotherhood",
+      "axis": "C",
+      "type": "likert",
+      "text": "In the last 30 days, I told another Muslim man something I was struggling with, honestly.",
+      "scoringDirection": "A",
+      "weight": 1
+    },
+    {
       "id": "Q20",
       "module": "brotherhood",
       "axis": "C",
       "type": "scenario",
       "text": "You are going through the hardest month of your life. Who actually knows about it?",
-      "weight": 2,
+      "weight": 1,
       "options": [
         { "label": "Two or three brothers I trust — and we have talked about it.", "score": 2, "pole": "A" },
         { "label": "One brother knows part of it.", "score": 1, "pole": "A" },

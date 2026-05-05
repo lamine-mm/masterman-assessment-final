@@ -1,6 +1,6 @@
 # Masterman Assessment — Final
 
-A 4-minute diagnostic lead-magnet for Muslim professionals. Outputs a 4-letter type code (AGSC model, 16 types) + a stage (1–4). Goal: earn trust → email opt-in → strategy call.
+A 5-minute diagnostic lead-magnet for Muslim professionals. Outputs a 4-letter type code (AGSC model, 16 types) + a stage (1–4). Goal: earn trust → email opt-in → strategy call.
 
 **Stack:** Next.js 15 App Router · TypeScript · Tailwind CSS · Supabase · ConvertKit v3
 
@@ -105,7 +105,7 @@ All user-facing copy, questions, and Islamic references live in `content/`. Thes
 
 | File | What it controls |
 |---|---|
-| `content/questions.json` | All 20 questions (text, scoring direction, options) |
+| `content/questions.json` | All 25 questions (text, scoring direction, options) |
 | `content/types.json` | 16 type write-ups (name, identity, strength, blind spot, Qur'an anchor) |
 | `content/stages.json` | 4 stage definitions (name, meaning, guidance) |
 | `content/copy.json` | Landing copy, CTAs, disclaimer (short + long), share messages |
