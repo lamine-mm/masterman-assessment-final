@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { ResultReveal } from "@/components/result/ResultReveal";
 import { StageBadge } from "@/components/result/StageBadge";
 import { ShareBlock } from "@/components/result/ShareBlock";
+import { AccuracyFeedback } from "@/components/result/AccuracyFeedback";
 import { DisclaimerPS } from "@/components/result/DisclaimerPS";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -170,6 +171,14 @@ export default async function ResultPage({
               whatsappTemplate={copy.share.whatsappMessage}
             />
           </div>
+
+          {/* ── Accuracy feedback (v2.2) ─────────────────────────────────── */}
+          {copy.postResult ? (
+            <AccuracyFeedback
+              resultId={id}
+              copy={copy.postResult.accuracyQuestion}
+            />
+          ) : null}
 
           {/* ── Next steps ──────────────────────────────────────────────── */}
           <Card variant="anchor">

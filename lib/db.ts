@@ -117,6 +117,19 @@ export async function getResultById(resultId: string): Promise<ScoredResult | nu
   return rowToScoredResult(row);
 }
 
+// ─── Result feedback (v2.2) ──────────────────────────────────────────────────
+
+export async function createResultFeedback(
+  resultId: string,
+  rating: number
+): Promise<void> {
+  const { error } = await getSupabase()
+    .from("result_feedback")
+    .insert({ result_id: resultId, accuracy_rating: rating });
+
+  if (error) throw new Error(`Failed to record result feedback: ${error.message}`);
+}
+
 // ─── Row mappers ─────────────────────────────────────────────────────────────
 
 function rowToLead(row: Record<string, unknown>): Lead {

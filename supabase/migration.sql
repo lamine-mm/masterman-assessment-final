@@ -53,3 +53,27 @@ create index if not exists webhook_log_created_at_idx on webhook_log(created_at 
 select table_name from information_schema.tables
 where table_schema = 'public'
 and table_name in ('leads', 'results', 'webhook_log');
+
+-- ─── v2.2 additions ───────────────────────────────────────────────────────────
+-- Captures the post-result accuracy rating (1–5). Anonymous insert allowed,
+-- no select for anon (read only via service-role key, like webhook_log).
+
+create table if not exists result_feedback (
+  id uuid primary key default gen_random_uuid(),
+  result_id uuid not null references results(id) on delete cascade,
+  accuracy_rating smallint not null check (accuracy_rating between 1 and 5),
+  created_at timestamptz default now()
+);
+
+create index if not exists result_feedback_result_id_idx on result_feedback(result_id);
+
+alter table result_feedback enable row level security;
+
+-- Allow anyone (anon) to insert a rating tied to their result.
+create policy "anon can insert feedback"
+  on result_feedback for insert
+  to anon
+  with check (true);
+
+-- No select policy for anon → server-side reads only (service-role key bypasses RLS).
+
