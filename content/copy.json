@@ -48,5 +48,33 @@
       "skipButton": "Skip",
       "thanksMessage": "Jazak Allah khayr — your feedback helps us improve the test."
     }
+  },
+  "plan": {
+    "eyebrow": "Your Path Forward",
+    "videoCaption": "8 min · Shaykh Abdullah Oduro",
+    "ctaButton": "Book your call — map my 90-day plan",
+    "resultCta": {
+      "title": "Your next step",
+      "body": "Before the team reaches out, watch this short video. It shows the path forward from where you stand — and the one conversation that starts it.",
+      "button": "Watch your path (8 min)"
+    },
+    "stages": {
+      "1": {
+        "headline": "Stage 1 – The Drifter. The motions are there. The heart is not. There is a way back.",
+        "bridge": "There is a simple 90-day path out of the drift. Shaykh Abdullah walks through it in this short video — made for men starting exactly where you are."
+      },
+      "2": {
+        "headline": "Stage 2 – The Builder. You are awake to the gap. Now make the change stick.",
+        "bridge": "There is a simple 90-day path from trying to consistent. Shaykh Abdullah walks through it — made for men building exactly what you are building."
+      },
+      "3": {
+        "headline": "Stage 3 – The Grounded. Your foundation is real. One blind spot is holding the rest.",
+        "bridge": "There is a simple 90-day path from steady to leading. Shaykh Abdullah walks through it — made for men carrying exactly what you carry."
+      },
+      "4": {
+        "headline": "Stage 4 – The Shepherd. You did the work. Now bring other men with you.",
+        "bridge": "The next step is not another fix. It is a brotherhood that holds the line with you. Shaykh Abdullah lays it out — and the 30-minute conversation that starts it."
+      }
+    }
   }
 }

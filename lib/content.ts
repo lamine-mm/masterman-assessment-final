@@ -144,6 +144,20 @@ const CopyFileSchema = z.object({
   disclaimer: z.object({ short: z.string(), long: z.string() }),
   share: z.object({ whatsappMessage: z.string(), copyLinkMessage: z.string() }),
   loading: z.object({ scoringMessage: z.string() }),
+  plan: z.object({
+    eyebrow: z.string(),
+    videoCaption: z.string(),
+    ctaButton: z.string(),
+    resultCta: z.object({
+      title: z.string(),
+      body: z.string(),
+      button: z.string(),
+    }),
+    stages: z.record(
+      z.string(),
+      z.object({ headline: z.string(), bridge: z.string() })
+    ),
+  }),
   postResult: z
     .object({
       accuracyQuestion: z.object({

@@ -8,6 +8,7 @@ import { AccuracyFeedback } from "@/components/result/AccuracyFeedback";
 import { DisclaimerPS } from "@/components/result/DisclaimerPS";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button-link";
 import { getResultById } from "@/lib/db";
 import { getTypeContent, getStageContent, getCopy } from "@/lib/content";
 import { AXIS_LABELS, AXIS_POLE_A, AXIS_POLE_B, type AxisKey } from "@/lib/types";
@@ -182,10 +183,18 @@ export default async function ResultPage({
 
           {/* ── Next steps ──────────────────────────────────────────────── */}
           <Card variant="anchor">
-            <CardContent className="pt-6 pb-6 px-5 sm:px-6 text-center">
-              <p className="font-display text-[22px] sm:text-[24px] text-foreground leading-snug tracking-[-0.015em]">
-                The Masterman team will reach out to you in a few moments to discuss your results.
+            <CardContent className="pt-6 pb-6 px-5 sm:px-6 text-center space-y-3">
+              <p className="eyebrow">{copy.plan.resultCta.title}</p>
+              <p className="font-display text-[20px] sm:text-[22px] text-foreground leading-snug tracking-[-0.015em]">
+                {copy.plan.resultCta.body}
               </p>
+              <ButtonLink
+                href={`/plan?stage=${result.stage}`}
+                size="lg"
+                className="w-full mt-1"
+              >
+                {copy.plan.resultCta.button}
+              </ButtonLink>
             </CardContent>
           </Card>
 
