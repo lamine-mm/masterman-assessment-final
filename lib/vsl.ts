@@ -21,8 +21,11 @@ export function getVslEmbedUrl(): string {
  * are traceable to the stage that produced them.
  */
 export function getBookingUrl(stage?: number): string {
-  const base =
-    process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://apply.mastermangroup.com";
+  // .trim() guards against stray whitespace/newlines in the env var value —
+  // a trailing newline here once shipped a corrupted href to production.
+  const base = (
+    process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://apply.mastermangroup.com"
+  ).trim();
   const utm =
     "utm_source=assessment&utm_medium=vsl-page&utm_campaign=masterman-assessment";
   return `${base}?${utm}${stage ? `&utm_content=stage-${stage}` : ""}`;
