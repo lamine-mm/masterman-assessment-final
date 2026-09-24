@@ -126,6 +126,22 @@ const StageRoadmapsFileSchema = z.object({
 
 // ─── Copy schema ─────────────────────────────────────────────────────────────
 
+/**
+ * Result-page CTA for the free live class. The topic, one-liner and date come
+ * from the live webinar registry (lib/webinar.ts); these fields are the
+ * evergreen wrapper around them — and the fallback when it is unreachable.
+ */
+const WebinarCopySchema = z.object({
+  eyebrow: z.string().min(1),
+  button: z.string().min(1),
+  bridge: z.string().min(1),
+  nextClassLabel: z.string().min(1),
+  fallbackTitle: z.string().min(1),
+  fallbackBody: z.string().min(1),
+});
+
+export type WebinarCopy = z.infer<typeof WebinarCopySchema>;
+
 const CopyFileSchema = z.object({
   landing: z.object({ hero: z.string(), subhero: z.string(), cta: z.string() }),
   register: z.object({ title: z.string(), body: z.string(), cta: z.string() }),
@@ -144,15 +160,11 @@ const CopyFileSchema = z.object({
   disclaimer: z.object({ short: z.string(), long: z.string() }),
   share: z.object({ whatsappMessage: z.string(), copyLinkMessage: z.string() }),
   loading: z.object({ scoringMessage: z.string() }),
+  webinar: WebinarCopySchema,
   plan: z.object({
     eyebrow: z.string(),
     videoCaption: z.string(),
     ctaButton: z.string(),
-    resultCta: z.object({
-      title: z.string(),
-      body: z.string(),
-      button: z.string(),
-    }),
     stages: z.record(
       z.string(),
       z.object({ headline: z.string(), bridge: z.string() })

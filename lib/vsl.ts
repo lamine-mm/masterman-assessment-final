@@ -1,8 +1,7 @@
 /**
  * VSL (video sales letter) config for the /plan page.
  * Swapping the video or runtime is a one-line edit here — nowhere else.
- * NOTE: the visible "8 min" strings live in content/copy.json (plan.videoCaption,
- * plan.resultCta.button) — keep them in sync with `minutes` when swapping.
+ * NOTE: the visible "8 min" string lives in content/copy.json (plan.videoCaption).
  */
 export const VSL_CONFIG = {
   /** YouTube video id (the part after v= or youtu.be/) */

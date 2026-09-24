@@ -49,15 +49,18 @@
       "thanksMessage": "Jazak Allah khayr — your feedback helps us improve the test."
     }
   },
+  "webinar": {
+    "eyebrow": "Free live class",
+    "button": "Sign up for free",
+    "bridge": "Your code shows you where you stand today. This free class shows you the next step.",
+    "nextClassLabel": "Live with Shaykh Abdullah Oduro",
+    "fallbackTitle": "Join the next free live class",
+    "fallbackBody": "Shaykh Abdullah teaches live, free, for Muslim men who want to lead themselves and their homes. Your link comes by email."
+  },
   "plan": {
     "eyebrow": "Your Path Forward",
     "videoCaption": "8 min · Shaykh Abdullah Oduro",
     "ctaButton": "Book your call — map my 90-day plan",
-    "resultCta": {
-      "title": "Your next step",
-      "body": "Before the team reaches out, watch this short video. It shows the path forward from where you stand — and the one conversation that starts it.",
-      "button": "Watch your path (8 min)"
-    },
     "stages": {
       "1": {
         "headline": "Stage 1 – The Drifter. The motions are there. The heart is not. There is a way back.",

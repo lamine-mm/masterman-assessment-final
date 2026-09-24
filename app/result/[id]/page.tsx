@@ -6,11 +6,12 @@ import { StageBadge } from "@/components/result/StageBadge";
 import { ShareBlock } from "@/components/result/ShareBlock";
 import { AccuracyFeedback } from "@/components/result/AccuracyFeedback";
 import { DisclaimerPS } from "@/components/result/DisclaimerPS";
+import { WebinarCta } from "@/components/result/WebinarCta";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ButtonLink } from "@/components/ui/button-link";
 import { getResultById } from "@/lib/db";
 import { getTypeContent, getStageContent, getCopy } from "@/lib/content";
+import { fetchCurrentWebinar, getWebinarUrl } from "@/lib/webinar";
 import { AXIS_LABELS, AXIS_POLE_A, AXIS_POLE_B, type AxisKey } from "@/lib/types";
 
 // AXES used for the type code legend only
@@ -26,6 +27,9 @@ export default async function ResultPage({
   const { id } = await params;
   const result = await getResultById(id);
   const copy = getCopy();
+  // Topic + date of the class being promoted, read live so a new webinar
+  // rolls both CTAs forward without a redeploy.
+  const webinar = await fetchCurrentWebinar();
 
   if (!result) notFound();
 
@@ -36,6 +40,14 @@ export default async function ResultPage({
   return (
     <main className="min-h-dvh flex flex-col">
       <Container className="max-w-xl lg:max-w-2xl flex-1 flex flex-col pt-3 sm:pt-4 pb-6">
+        {/* ── Free live class — top banner ────────────────────────────── */}
+        <WebinarCta
+          variant="banner"
+          copy={copy.webinar}
+          webinar={webinar}
+          href={getWebinarUrl("result-top-banner", result.stage)}
+        />
+
         <ResultReveal
           typeCode={result.type}
           typeName={typeContent?.name ?? result.type}
@@ -68,6 +80,14 @@ export default async function ResultPage({
               </div>
             </CardContent>
           </Card>
+
+          {/* ── Free live class — card under the code legend ─────────────── */}
+          <WebinarCta
+            variant="card"
+            copy={copy.webinar}
+            webinar={webinar}
+            href={getWebinarUrl("result-code-card", result.stage)}
+          />
 
           {typeContent ? (
             <>
@@ -180,23 +200,6 @@ export default async function ResultPage({
               copy={copy.postResult.accuracyQuestion}
             />
           ) : null}
-
-          {/* ── Next steps ──────────────────────────────────────────────── */}
-          <Card variant="anchor">
-            <CardContent className="pt-6 pb-6 px-5 sm:px-6 text-center space-y-3">
-              <p className="eyebrow">{copy.plan.resultCta.title}</p>
-              <p className="font-display text-[20px] sm:text-[22px] text-foreground leading-snug tracking-[-0.015em]">
-                {copy.plan.resultCta.body}
-              </p>
-              <ButtonLink
-                href={`/plan?stage=${result.stage}`}
-                size="lg"
-                className="w-full mt-1"
-              >
-                {copy.plan.resultCta.button}
-              </ButtonLink>
-            </CardContent>
-          </Card>
 
           <DisclaimerPS text={copy.disclaimer.short} />
         </ResultReveal>

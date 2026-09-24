@@ -97,9 +97,23 @@ Non-developers (Lamine, Faizan, Shaykh Abdullah) must be able to edit content wi
     "short": "P.S. This assessment is a personal growth tool...",
     "long": "The Masterman Assessment is an educational and self-reflection tool..."
   },
-  "share": { "whatsappMessage": "...", "tweetText": "..." }
+  "share": { "whatsappMessage": "...", "tweetText": "..." },
+  "webinar": {
+    "eyebrow": "Free live class",
+    "button": "Sign up for free",
+    "bridge": "Your code shows you where you stand today...",
+    "nextClassLabel": "Live with Shaykh Abdullah Oduro",
+    "fallbackTitle": "...", "fallbackBody": "..."
+  }
 }
 ```
+
+`webinar` wraps the free-class CTA shown twice on the result page: a banner above the
+result and a card under "What your code means". **Do not write the class topic or date
+here** — those are read live from the webinar registry (whatever is showing on
+event.mastermangroup.com), so a new class updates the CTA on its own. `fallbackTitle` /
+`fallbackBody` show only when that lookup fails, so keep them true of any class. The
+link, the UTMs and the lookup live in `lib/webinar.ts`.
 
 ## File: `config/scoring.json`
 

@@ -10,6 +10,8 @@ interface ButtonLinkProps extends VariantProps<typeof buttonVariants> {
   href: string;
   /** External links render a plain <a>; internal ones use next/link. */
   external?: boolean;
+  /** External only: open in a new tab. */
+  newTab?: boolean;
   className?: string;
   children: React.ReactNode;
 }
@@ -22,6 +24,7 @@ interface ButtonLinkProps extends VariantProps<typeof buttonVariants> {
 export function ButtonLink({
   href,
   external,
+  newTab,
   variant,
   size,
   className,
@@ -30,7 +33,11 @@ export function ButtonLink({
   const classes = cn(buttonVariants({ variant, size }), className);
   if (external) {
     return (
-      <a href={href} className={classes}>
+      <a
+        href={href}
+        className={classes}
+        {...(newTab ? { target: "_blank", rel: "noopener" } : {})}
+      >
         {children}
       </a>
     );
