@@ -61,8 +61,14 @@ export function WebinarCta({
         {copy.bridge}
       </p>
       <p className="text-sm text-muted-foreground leading-relaxed">
-        <span className="text-foreground/80">&ldquo;{title}&rdquo;</span>
-        {" — "}
+        {/* Only a real class title is worth quoting — the fallback is our own
+            wording, not the name of anything. */}
+        {webinar.title ? (
+          <>
+            <span className="text-foreground/80">&ldquo;{title}&rdquo;</span>
+            {" — "}
+          </>
+        ) : null}
         {copy.nextClassLabel}
         {webinar.dateLine ? <>. {webinar.dateLine}</> : null}
       </p>
